@@ -6,6 +6,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context,
+        width: 392.72727272727275,
+        height: 759.2727272727273,
+        allowFontScaling: true);
+
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

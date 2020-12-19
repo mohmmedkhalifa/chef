@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Register extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
-
-
+    ScreenUtil.init(
+      context,
+      width: 392.72727272727275,
+      height: 759.2727272727273,
+      allowFontScaling: true,
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -30,12 +32,12 @@ class Register extends StatelessWidget {
               title: Text(
                 ' مستخدم جديد',
                 textAlign: TextAlign.right,
-                style: TextStyle(fontSize: 20, fontFamily: 'DNT'),
+                style: TextStyle(fontSize: ScreenUtil().setSp(20), fontFamily: 'DNT'),
               ),
               subtitle: Text(
                 'يمكنك تسجيل عضوية مجاناً',
                 textAlign: TextAlign.right,
-                style: TextStyle(fontSize: 16, fontFamily: 'DNT'),
+                style: TextStyle(fontSize: ScreenUtil().setSp(16), fontFamily: 'DNT'),
               ),
             ),
             SizedBox(
@@ -47,7 +49,8 @@ class Register extends StatelessWidget {
                   text: 'المطاعم',
                   image: 'assets/images/shop.png',
                   onTap: () {
-                    ExtendedNavigator.of(context).push(Routes.registerRestaurant);
+                    ExtendedNavigator.of(context)
+                        .push(Routes.registerRestaurant);
                   },
                 ),
                 SizedBox(

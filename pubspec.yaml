@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_screenutil: ^4.0.0
+  flutter_screenutil: ^2.3.1
   auto_route: ^0.6.9
   font_awesome_flutter: ^8.11.0
   cupertino_icons: ^1.0.1
