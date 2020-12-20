@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:chefo/models/route.gr.dart';
+import 'package:chefo/screens/about.dart';
 import 'package:chefo/screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

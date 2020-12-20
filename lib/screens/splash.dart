@@ -1,33 +1,28 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:chefo/models/route.gr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context,
-        width: 392.72727272727275,
-        height: 759.2727272727273,
-        allowFontScaling: true);
+    Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            height: 100.h,
+            height: size.height * 0.25,
           ),
           Column(
             children: [
               Image.asset(
                 'assets/images/chef.png',
-                fit: BoxFit.fitWidth,
-                width: 150.w,
-                height: 150.h,
+                fit: BoxFit.contain,
+                width: size.width * 0.4,
+                height: size.height * 0.2,
               ),
               SizedBox(
-                height: 24.h,
+                height: size.height * 0.03,
               ),
               Text(
                 'الشيف',

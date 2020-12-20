@@ -9,6 +9,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+import '../screens/about.dart';
 import '../screens/home.dart';
 import '../screens/register.dart';
 import '../screens/register_chef.dart';
@@ -21,12 +22,14 @@ class Routes {
   static const String home = '/Home';
   static const String registerChef = '/register-chef';
   static const String registerRestaurant = '/register-restaurant';
+  static const String about = '/About';
   static const all = <String>{
     splash,
     register,
     home,
     registerChef,
     registerRestaurant,
+    about,
   };
 }
 
@@ -39,6 +42,7 @@ class CustomRouter extends RouterBase {
     RouteDef(Routes.home, page: Home),
     RouteDef(Routes.registerChef, page: RegisterChef),
     RouteDef(Routes.registerRestaurant, page: RegisterRestaurant),
+    RouteDef(Routes.about, page: About),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -70,6 +74,12 @@ class CustomRouter extends RouterBase {
     RegisterRestaurant: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => RegisterRestaurant(),
+        settings: data,
+      );
+    },
+    About: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => About(),
         settings: data,
       );
     },

@@ -1,20 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:chefo/models/route.gr.dart';
+import 'package:chefo/widgets/app_drawer.dart';
 import 'package:chefo/widgets/circle_card.dart';
+import 'package:chefo/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(
-      context,
-      width: 392.72727272727275,
-      height: 759.2727272727273,
-      allowFontScaling: true,
-    );
+    Size size = MediaQuery.of(context).size;
 
     return Scaffold(
+      endDrawer: AppDrawer(),
       appBar: AppBar(
         title: Text(
           'التسجيل',
@@ -26,27 +23,19 @@ class Register extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: 20.h,
+              height: size.height * (20 / 760),
             ),
-            ListTile(
-              title: Text(
-                ' مستخدم جديد',
-                textAlign: TextAlign.right,
-                style: TextStyle(fontSize: ScreenUtil().setSp(20), fontFamily: 'DNT'),
-              ),
-              subtitle: Text(
-                'يمكنك تسجيل عضوية مجاناً',
-                textAlign: TextAlign.right,
-                style: TextStyle(fontSize: ScreenUtil().setSp(16), fontFamily: 'DNT'),
-              ),
+            HeaderWidget(
+              title: ' مستخدم جديد',
+              subtitle: 'يمكنك تسجيل عضوية مجاناً',
             ),
             SizedBox(
-              height: 60.h,
+              height: size.height * (60 / 760),
             ),
             Column(
               children: [
                 CircleCard(
-                  text: 'المطاعم',
+                  text: 'مطعم',
                   image: 'assets/images/shop.png',
                   onTap: () {
                     ExtendedNavigator.of(context)
@@ -54,15 +43,18 @@ class Register extends StatelessWidget {
                   },
                 ),
                 SizedBox(
-                  height: 15.h,
+                  height: size.height * (15 / 760),
                 ),
                 CircleCard(
-                  text: 'الطباخون',
+                  text: 'طبّاخ',
                   image: 'assets/images/user.png',
                   onTap: () {
                     ExtendedNavigator.of(context).push(Routes.registerChef);
                   },
                 ),
+                SizedBox(
+                  height: 16,
+                )
               ],
             ),
           ],
@@ -71,3 +63,5 @@ class Register extends StatelessWidget {
     );
   }
 }
+
+

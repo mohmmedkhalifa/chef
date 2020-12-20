@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route_annotations.dart';
+import 'package:chefo/screens/about.dart';
 import 'package:chefo/screens/home.dart';
 import 'package:chefo/screens/register.dart';
 import 'package:chefo/screens/register_chef.dart';
@@ -13,6 +14,7 @@ import 'package:chefo/screens/splash.dart';
     MaterialRoute(page: Home),
     MaterialRoute(page: RegisterChef),
     MaterialRoute(page: RegisterRestaurant),
+    MaterialRoute(page: About),
   ],
 )
 class $CustomRouter {}
