@@ -12,6 +12,7 @@ class MyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
       child: GestureDetector(
@@ -19,7 +20,7 @@ class MyButton extends StatelessWidget {
         child: Container(
           margin: EdgeInsets.symmetric(vertical: 8.0),
           width: double.infinity,
-          height: 64,
+          height: size.height * (64 / 760),
           child: Center(
             child: Text(
               text,
@@ -31,7 +32,7 @@ class MyButton extends StatelessWidget {
             ),
           ),
           decoration: BoxDecoration(
-            color:Theme.of(context).primaryColor,
+            color: Theme.of(context).primaryColor,
             borderRadius: BorderRadius.circular(36),
           ),
         ),

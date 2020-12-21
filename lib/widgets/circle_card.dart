@@ -14,6 +14,7 @@ class CircleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: onTap,
       child: Material(
@@ -41,8 +42,8 @@ class CircleCard extends StatelessWidget {
               ),
             ],
           ),
-          width: 150,
-          height: 150,
+          width: size.width*(150/392),
+          height: size.height*(150/760),
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(image),

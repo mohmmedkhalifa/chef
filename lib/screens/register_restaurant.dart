@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:chefo/widgets/app_drawer.dart';
 import 'package:chefo/widgets/header_widget.dart';
+import 'package:chefo/widgets/my_app_bar.dart';
 import 'package:chefo/widgets/my_button.dart';
 import 'package:chefo/widgets/my_text_field.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +13,9 @@ class RegisterRestaurant extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       endDrawer: AppDrawer(),
-      appBar: AppBar(
-        title: Text(
-          'تسجيل المطاعم',
-          style: Theme.of(context).textTheme.headline4,
-        ),
-        centerTitle: true,
+      appBar: MyAppBar(
+        title: 'تسجيل المطاعم',
+
       ),
       body: SingleChildScrollView(
         child: Column(

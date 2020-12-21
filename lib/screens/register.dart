@@ -3,6 +3,7 @@ import 'package:chefo/models/route.gr.dart';
 import 'package:chefo/widgets/app_drawer.dart';
 import 'package:chefo/widgets/circle_card.dart';
 import 'package:chefo/widgets/header_widget.dart';
+import 'package:chefo/widgets/my_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatelessWidget {
@@ -12,12 +13,9 @@ class Register extends StatelessWidget {
 
     return Scaffold(
       endDrawer: AppDrawer(),
-      appBar: AppBar(
-        title: Text(
-          'التسجيل',
-          style: Theme.of(context).textTheme.headline4,
-        ),
-        centerTitle: true,
+      appBar: MyAppBar(
+        title: 'التسجيل',
+
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -38,8 +36,9 @@ class Register extends StatelessWidget {
                   text: 'مطعم',
                   image: 'assets/images/shop.png',
                   onTap: () {
-                    ExtendedNavigator.of(context)
-                        .push(Routes.registerRestaurant);
+                    ExtendedNavigator.of(context).push(
+                      Routes.registerRestaurant,
+                    );
                   },
                 ),
                 SizedBox(
@@ -53,7 +52,7 @@ class Register extends StatelessWidget {
                   },
                 ),
                 SizedBox(
-                  height: 16,
+                  height: size.height * (16 / 760),
                 )
               ],
             ),
@@ -63,5 +62,3 @@ class Register extends StatelessWidget {
     );
   }
 }
-
-

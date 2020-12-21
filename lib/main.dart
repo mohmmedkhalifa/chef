@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:chefo/models/route.gr.dart';
-import 'package:chefo/screens/about.dart';
 import 'package:chefo/screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -39,6 +38,21 @@ class MyApp extends StatelessWidget {
             fontFamily: 'DNT',
             color: Colors.white,
             fontSize: 28,
+          ),
+          headline3: TextStyle(
+            fontFamily: 'DNT',
+            color: Colors.black,
+            fontSize: 28,
+          ),
+          headline2: TextStyle(
+            fontFamily: 'DNT',
+            color: Colors.black,
+            fontSize: 24,
+          ),
+          headline1: TextStyle(
+            fontFamily: 'DNT',
+            color: Colors.black,
+            fontSize: 20,
           ),
         ),
       ),

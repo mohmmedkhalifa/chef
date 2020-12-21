@@ -1,3 +1,5 @@
+import 'package:chefo/widgets/app_drawer.dart';
+import 'package:chefo/widgets/my_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -8,12 +10,9 @@ class About extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'عن التطبيق',
-          style: Theme.of(context).textTheme.headline4,
-        ),
-        centerTitle: true,
+      endDrawer: AppDrawer(),
+      appBar: MyAppBar(
+        title: 'عن التطبيق',
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -55,7 +54,8 @@ class About extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16),
               child: Text(
                 KAbout,
                 textAlign: TextAlign.right,

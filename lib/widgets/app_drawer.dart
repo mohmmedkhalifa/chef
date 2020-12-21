@@ -10,7 +10,7 @@ class AppDrawer extends StatelessWidget {
       child: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16),
+            padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16),
             child: ListTile(
               onTap: () {
                 ExtendedNavigator.of(context).push(Routes.about);
@@ -18,12 +18,27 @@ class AppDrawer extends StatelessWidget {
               },
               title: Text(
                 'حول التطبيق',
-                style: TextStyle(fontSize: 18,fontFamily: 'DNT'),
+                style: TextStyle(fontSize: 18, fontFamily: 'DNT'),
                 textAlign: TextAlign.end,
               ),
               leading: Icon(FontAwesomeIcons.arrowAltCircleLeft),
             ),
-          )
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16),
+            child: ListTile(
+              onTap: () {
+                ExtendedNavigator.of(context).push(Routes.contact);
+                ExtendedNavigator.of(context).pop();
+              },
+              title: Text(
+                'اتصل بنا',
+                style: TextStyle(fontSize: 18, fontFamily: 'DNT'),
+                textAlign: TextAlign.end,
+              ),
+              leading: Icon(FontAwesomeIcons.arrowAltCircleLeft),
+            ),
+          ),
         ],
       ),
     );
