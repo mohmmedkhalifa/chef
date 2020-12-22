@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:chefo/models/route.gr.dart';
+import 'package:chefo/widgets/my_logo.dart';
 import 'package:flutter/material.dart';
 
 class Splash extends StatelessWidget {
@@ -13,23 +14,7 @@ class Splash extends StatelessWidget {
           Container(
             height: size.height * 0.25,
           ),
-          Column(
-            children: [
-              Image.asset(
-                'assets/images/chef.png',
-                fit: BoxFit.contain,
-                width: size.width * 0.4,
-                height: size.height * 0.2,
-              ),
-              SizedBox(
-                height: size.height * 0.03,
-              ),
-              Text(
-                'الشيف',
-                style: Theme.of(context).textTheme.headline5,
-              ),
-            ],
-          ),
+          Logo(size: size),
           Spacer(),
           Padding(
             padding: const EdgeInsets.all(24),

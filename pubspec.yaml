@@ -15,8 +15,10 @@ dependencies:
   auto_route: ^0.6.9
   font_awesome_flutter: ^8.11.0
   cupertino_icons: ^1.0.1
+  logger: ^0.9.4
   auto_size_text: ^2.1.0
   carousel_slider: ^2.3.1
+  string_validator: ^0.1.4
 
 
 dev_dependencies:

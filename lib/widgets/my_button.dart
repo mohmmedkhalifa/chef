@@ -20,7 +20,7 @@ class MyButton extends StatelessWidget {
         child: Container(
           margin: EdgeInsets.symmetric(vertical: 8.0),
           width: double.infinity,
-          height: size.height * (64 / 760),
+          height: size.height * (64 / size.height),
           child: Center(
             child: Text(
               text,

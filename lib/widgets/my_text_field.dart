@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../const.dart';
+
 class MyTextField extends StatelessWidget {
   MyTextField({
     Key key,
@@ -7,23 +9,37 @@ class MyTextField extends StatelessWidget {
     this.icon,
     this.prefix,
     this.lines,
+    this.keyboardType,
+    this.onSaved,
+    this.validator,
   }) : super(key: key);
 
   String hintText;
   Widget icon;
   Widget prefix;
   int lines;
+  Function validator;
+  Function onSaved;
+  TextInputType keyboardType;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: TextField(
+      child: TextFormField(
+        cursorColor: Colors.black,
         maxLines: lines,
+        keyboardType: keyboardType,
         textAlign: TextAlign.end,
+        validator: (value) => validator(value),
+        onSaved: (newValue) => onSaved(newValue),
         decoration: InputDecoration(
+          filled: true,
+
+          fillColor: Colors.white,
           alignLabelWithHint: true,
           hintText: hintText,
+          hintStyle: hintStyle,
           suffixIcon: icon,
           prefix: prefix,
           border: OutlineInputBorder(

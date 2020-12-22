@@ -8,10 +8,11 @@ class MyCard extends StatelessWidget {
   MyCard({
     Key key,
     this.ad,
+    this.onTap,
   }) : super(key: key);
 
   Ads ad;
-
+Function onTap;
   //392.72727272727275
   //  759.2727272727273
 
@@ -20,8 +21,11 @@ class MyCard extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return GestureDetector(
-      onTap: () {
-        ExtendedNavigator.of(context).push(Routes.adDetails, arguments: ad);
+      onTap: (){
+        ExtendedNavigator.of(context).push(
+          Routes.adDetails,
+          arguments: AdDetailsArguments(ad: ad),
+        );
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -41,8 +45,8 @@ class MyCard extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                width: size.width * (150 / 392),
-                height: size.height * (150 / 760),
+                width: size.width * (150 / size.width),
+                height: size.height * (150 / size.height),
                 child: Image.asset(
                   ad.imageUrl,
                   fit: BoxFit.cover,
@@ -78,7 +82,7 @@ class MyCard extends StatelessWidget {
               ),
             ],
           ),
-          width: size.width * (360 / 392),
+          width: size.width * (330 / size.width),
         ),
       ),
     );

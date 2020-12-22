@@ -6,6 +6,7 @@ import 'package:chefo/screens/home.dart';
 import 'package:chefo/screens/register.dart';
 import 'package:chefo/screens/register_chef.dart';
 import 'package:chefo/screens/register_restaurant.dart';
+import 'package:chefo/screens/restaurant_deatails.dart';
 import 'package:chefo/screens/splash.dart';
 
 @MaterialAutoRouter(
@@ -19,6 +20,7 @@ import 'package:chefo/screens/splash.dart';
     MaterialRoute(page: About),
     MaterialRoute(page: Contact),
     MaterialRoute(page: AdDetails,),
+    MaterialRoute(page: RestaurantDetails,),
   ],
 )
 class $CustomRouter {}

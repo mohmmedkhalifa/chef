@@ -42,8 +42,8 @@ class CircleCard extends StatelessWidget {
               ),
             ],
           ),
-          width: size.width*(150/392),
-          height: size.height*(150/760),
+          width: size.width*(150/size.width),
+          height: size.height*(150/size.height),
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(image),

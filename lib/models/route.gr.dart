@@ -16,8 +16,10 @@ import '../screens/home.dart';
 import '../screens/register.dart';
 import '../screens/register_chef.dart';
 import '../screens/register_restaurant.dart';
+import '../screens/restaurant_deatails.dart';
 import '../screens/splash.dart';
 import 'ads.dart';
+import 'restaurant.dart';
 
 class Routes {
   static const String splash = '/';
@@ -28,6 +30,7 @@ class Routes {
   static const String about = '/About';
   static const String contact = '/Contact';
   static const String adDetails = '/ad-details';
+  static const String restaurantDetails = '/restaurant-details';
   static const all = <String>{
     splash,
     register,
@@ -37,6 +40,7 @@ class Routes {
     about,
     contact,
     adDetails,
+    restaurantDetails,
   };
 }
 
@@ -52,6 +56,7 @@ class CustomRouter extends RouterBase {
     RouteDef(Routes.about, page: About),
     RouteDef(Routes.contact, page: Contact),
     RouteDef(Routes.adDetails, page: AdDetails),
+    RouteDef(Routes.restaurantDetails, page: RestaurantDetails),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -105,6 +110,18 @@ class CustomRouter extends RouterBase {
         settings: data,
       );
     },
+    RestaurantDetails: (data) {
+      final args = data.getArgs<RestaurantDetailsArguments>(
+        orElse: () => RestaurantDetailsArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => RestaurantDetails(
+          restaurant: args.restaurant,
+          ads: args.ads,
+        ),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -116,4 +133,11 @@ class CustomRouter extends RouterBase {
 class AdDetailsArguments {
   final Ads ad;
   AdDetailsArguments({@required this.ad});
+}
+
+/// RestaurantDetails arguments holder class
+class RestaurantDetailsArguments {
+  final Restaurant restaurant;
+  final List<Ads> ads;
+  RestaurantDetailsArguments({this.restaurant, this.ads});
 }

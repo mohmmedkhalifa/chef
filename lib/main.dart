@@ -7,10 +7,13 @@ import 'package:flutter/services.dart';
 import 'const.dart';
 
 void main() {
+  runApp(MyApp());
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark));
-  runApp(MyApp());
+
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 }
 
 class MyApp extends StatelessWidget {
@@ -47,12 +50,12 @@ class MyApp extends StatelessWidget {
           headline2: TextStyle(
             fontFamily: 'DNT',
             color: Colors.black,
-            fontSize: 24,
+            fontSize: 22,
           ),
           headline1: TextStyle(
             fontFamily: 'DNT',
             color: Colors.black,
-            fontSize: 20,
+            fontSize: 18,
           ),
         ),
       ),
