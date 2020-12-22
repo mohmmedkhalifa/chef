@@ -1,6 +1,6 @@
 import 'package:chefo/widgets/my_app_bar.dart';
 import 'package:chefo/widgets/my_app_drawer.dart';
-import 'package:chefo/widgets/my_background.dart';
+
 import 'package:chefo/widgets/my_button.dart';
 import 'package:chefo/widgets/my_checkbox.dart';
 import 'package:chefo/widgets/my_text_field.dart';
@@ -66,77 +66,72 @@ class _AddAdsState extends State<AddAds> {
       appBar: MyAppBar(
         title: 'إضافة إعلان',
       ),
-      body: Stack(
-        children: [
-          Background(),
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: size.height * (30 / size.height),
-                ),
-                Form(
-                  key: formKey,
-                  child: Column(
-                    children: [
-                      MyTextField(
-                        keyboardType: TextInputType.name,
-                        hintText: 'عنوان الإعلان',
-                        icon: Icon(
-                          FontAwesomeIcons.user,
-                          size: 16,
-                        ),
-                        validator: validateTitle,
-                        onSaved: saveTitle,
-                      ),
-                      UploadImage(
-                        text: 'يرجى رفع صورة المتجر',
-                      ),
-                      MyTextField(
-                        keyboardType: TextInputType.text,
-                        lines: 8,
-                        hintText: '... الوصف',
-                        validator: validateDescription,
-                        onSaved: saveDesc,
-                      ),
-                      MyCheckBox(
-                        isChecked: isChecked1,
-                        title: 'استقبال رسائل داخلية',
-                        onChanged: (value) {
-                          setState(() {
-                            isChecked1 = value;
-                          });
-                        },
-                      ),
-                      MyCheckBox(
-                        isChecked: isChecked2,
-                        title: 'السماح بإعادة النشر',
-                        onChanged: (value) {
-                          setState(() {
-                            isChecked2 = value;
-                          });
-                        },
-                      ),
-                      MyCheckBox(
-                        isChecked: isChecked3,
-                        title: 'عدم الإزعاج',
-                        onChanged: (value) {
-                          setState(() {
-                            isChecked3 = value;
-                          });
-                        },
-                      ),
-                      MyButton(
-                        text: 'إضافة إعلان',
-                        onTap: saveForm,
-                      ),
-                    ],
-                  ),
-                )
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: size.height * (30 / size.height),
             ),
-          ),
-        ],
+            Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  MyTextField(
+                    keyboardType: TextInputType.name,
+                    hintText: 'عنوان الإعلان',
+                    icon: Icon(
+                      FontAwesomeIcons.user,
+                      size: 16,
+                    ),
+                    validator: validateTitle,
+                    onSaved: saveTitle,
+                  ),
+                  UploadImage(
+                    text: 'يرجى رفع صورة المتجر',
+                  ),
+                  MyTextField(
+                    keyboardType: TextInputType.text,
+                    lines: 8,
+                    hintText: '... الوصف',
+                    validator: validateDescription,
+                    onSaved: saveDesc,
+                  ),
+                  MyCheckBox(
+                    isChecked: isChecked1,
+                    title: 'استقبال رسائل داخلية',
+                    onChanged: (value) {
+                      setState(() {
+                        isChecked1 = value;
+                      });
+                    },
+                  ),
+                  MyCheckBox(
+                    isChecked: isChecked2,
+                    title: 'السماح بإعادة النشر',
+                    onChanged: (value) {
+                      setState(() {
+                        isChecked2 = value;
+                      });
+                    },
+                  ),
+                  MyCheckBox(
+                    isChecked: isChecked3,
+                    title: 'عدم الإزعاج',
+                    onChanged: (value) {
+                      setState(() {
+                        isChecked3 = value;
+                      });
+                    },
+                  ),
+                  MyButton(
+                    text: 'إضافة إعلان',
+                    onTap: saveForm,
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:chefo/dummy_data.dart';
-import 'package:chefo/screens/contact.dart';
+
 import 'package:chefo/widgets/my_app_bar.dart';
 import 'package:chefo/widgets/my_app_drawer.dart';
-import 'package:chefo/widgets/my_background.dart';
+
 import 'package:chefo/widgets/my_card.dart';
 import 'package:chefo/widgets/my_home_title.dart';
 import 'package:chefo/widgets/my_restaurant_widget.dart';
@@ -18,84 +18,79 @@ class Home extends StatelessWidget {
       appBar: MyAppBar(
         title: 'الصفحة الرئيسية',
       ),
-      body: Stack(
+      body: ListView(
         children: [
-          Background(),
-          ListView(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 16.0),
-                child: CarouselSlider(
-                  options: CarouselOptions(
-                    autoPlay: true,
-                    enlargeCenterPage: true,
-                  ),
-                  items: [
-                    Image.asset(
-                      'assets/images/res1.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                    Image.asset(
-                      'assets/images/res2.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                    Image.asset(
-                      'assets/images/res3.jpg',
-                      fit: BoxFit.cover,
-                    ),
-                  ],
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0),
+            child: CarouselSlider(
+              options: CarouselOptions(
+                autoPlay: true,
+                enlargeCenterPage: true,
+              ),
+              items: [
+                Image.asset(
+                  'assets/images/res1.jpg',
+                  fit: BoxFit.cover,
                 ),
-              ),
-              HomeTitle(
-                size: size,
-                title: 'الإعلانات الحديثة',
-              ),
-              Container(
-                height: size.height * (320 / size.height),
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  reverse: true,
-                  itemCount: ads.length,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: MyCard(
-                        ad: ads[index],
-                      ),
-                    );
-                  },
+                Image.asset(
+                  'assets/images/res2.jpg',
+                  fit: BoxFit.cover,
                 ),
-              ),
-              HomeTitle(
-                size: size,
-                title: 'الفنادق والمطابخ',
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: Container(
-                  height: size.height,
-                  width: size.width,
-                  child: GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.all(8),
-                    itemCount: restaurants.length,
-                    itemBuilder: (context, index) {
-                      return RestWidget(
-                        restaurant: restaurants[index],
-                      );
-                    },
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 1,
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 12,
-                      mainAxisSpacing: 12,
-                    ),
-                  ),
+                Image.asset(
+                  'assets/images/res3.jpg',
+                  fit: BoxFit.cover,
                 ),
-              )
-            ],
+              ],
+            ),
           ),
+          HomeTitle(
+            size: size,
+            title: 'الإعلانات الحديثة',
+          ),
+          Container(
+            height: size.height * (320 / size.height),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              reverse: true,
+              itemCount: ads.length,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: MyCard(
+                    ad: ads[index],
+                  ),
+                );
+              },
+            ),
+          ),
+          HomeTitle(
+            size: size,
+            title: 'الفنادق والمطابخ',
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: Container(
+              height: size.height,
+              width: size.width,
+              child: GridView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.all(8),
+                itemCount: restaurants.length,
+                itemBuilder: (context, index) {
+                  return RestWidget(
+                    restaurant: restaurants[index],
+                  );
+                },
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  childAspectRatio: 1,
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 12,
+                  mainAxisSpacing: 12,
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );

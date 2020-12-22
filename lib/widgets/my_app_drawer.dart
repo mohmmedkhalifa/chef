@@ -1,9 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:chefo/models/route.gr.dart';
-import 'package:chefo/screens/add_ads.dart';
-import 'package:chefo/screens/terms.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -11,70 +8,83 @@ class AppDrawer extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16),
-            child: ListTile(
-              onTap: () {
-                ExtendedNavigator.of(context).push(Routes.about);
-                ExtendedNavigator.of(context).pop();
-              },
-              title: Text(
-                'حول التطبيق',
-                style: TextStyle(fontSize: 18, fontFamily: 'DNT'),
-                textAlign: TextAlign.end,
-              ),
-              leading: Icon(FontAwesomeIcons.arrowAltCircleLeft),
-            ),
+          UserAccountsDrawerHeader(),
+          MyDrawerContent(
+            title: 'الصفحة الرئيسية',
+            icon: Icon(Icons.home),
+            route: Routes.home,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16),
-            child: ListTile(
-              onTap: () {
-                ExtendedNavigator.of(context).push(Routes.contact);
-                ExtendedNavigator.of(context).pop();
-              },
-              title: Text(
-                'اتصل بنا',
-                style: TextStyle(fontSize: 18, fontFamily: 'DNT'),
-                textAlign: TextAlign.end,
-              ),
-              leading: Icon(FontAwesomeIcons.arrowAltCircleLeft),
-            ),
+          MyDrawerContent(
+            title: 'الرسائل',
+            icon: Icon(Icons.mail),
+            route: Routes.mailBox,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16),
-            child: ListTile(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => AddAds(),
-                ));
-              },
-              title: Text(
-                'إضافة إعلان',
-                style: TextStyle(fontSize: 18, fontFamily: 'DNT'),
-                textAlign: TextAlign.end,
-              ),
-              leading: Icon(FontAwesomeIcons.plus),
-            ),
+          MyDrawerContent(
+            title: 'تسجيل مطعم',
+            icon: Icon(Icons.store),
+            route: Routes.registerRestaurant,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 16),
-            child: ListTile(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Terms(),
-                ));
-              },
-              title: Text(
-                'الشروط والأحكام',
-                style: TextStyle(fontSize: 18, fontFamily: 'DNT'),
-                textAlign: TextAlign.end,
-              ),
-              leading: Icon(FontAwesomeIcons.plus),
-            ),
+          MyDrawerContent(
+            title: 'تسجيل طبّاخ',
+            icon: Icon(Icons.person),
+            route: Routes.registerChef,
+          ),
+          MyDrawerContent(
+            title: 'أضف إعلان',
+            icon: Icon(Icons.add),
+            route: Routes.addAds,
+          ),
+          MyDrawerContent(
+            title: 'تواصل',
+            icon: Icon(Icons.phone),
+            route: Routes.contact,
+          ),
+          MyDrawerContent(
+            title: 'الشروط والأحكام',
+            icon: Icon(Icons.menu_book),
+            route: Routes.terms,
+          ),
+          MyDrawerContent(
+            title: 'حول التطبيق',
+            icon: Icon(Icons.info),
+            route: Routes.about,
           ),
         ],
       ),
+    );
+  }
+}
+
+class MyDrawerContent extends StatelessWidget {
+  MyDrawerContent({
+    Key key,
+    this.title,
+    this.icon,
+    this.route,
+  }) : super(key: key);
+
+  String title;
+  Widget icon;
+  Object route;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ListTile(
+          onTap: () {
+            ExtendedNavigator.of(context).push(route);
+            ExtendedNavigator.of(context).pop();
+          },
+          title: Text(
+            title,
+            style: TextStyle(fontSize: 18, fontFamily: 'DNT'),
+            textAlign: TextAlign.end,
+          ),
+          trailing: icon,
+        ),
+        Divider(),
+      ],
     );
   }
 }

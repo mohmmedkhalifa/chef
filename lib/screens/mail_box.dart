@@ -1,8 +1,8 @@
-import 'package:chefo/models/message.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:chefo/dummy_data.dart';
+import 'package:chefo/models/route.gr.dart';
 import 'package:chefo/widgets/my_app_bar.dart';
 import 'package:chefo/widgets/my_app_drawer.dart';
-import 'package:chefo/widgets/my_background.dart';
-import 'package:chefo/dummy_data.dart';
 import 'package:chefo/widgets/my_header_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +24,9 @@ class MailBox extends StatelessWidget {
                 height: 16,
               ),
               HeaderWidget(
+                onTap: () {
+                  ExtendedNavigator.of(context).push(Routes.conversation);
+                },
                 title: users[index].from,
                 subtitle: users[index].message,
                 trailing: CircleAvatar(

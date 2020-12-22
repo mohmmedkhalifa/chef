@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import '../const.dart';
 
 class MyTextField extends StatelessWidget {
-  MyTextField({
-    Key key,
-    this.hintText,
-    this.icon,
-    this.prefix,
-    this.lines,
-    this.keyboardType,
-    this.onSaved,
-    this.validator,
-  }) : super(key: key);
+  MyTextField(
+      {Key key,
+      this.hintText,
+      this.icon,
+      this.prefix,
+      this.lines,
+      this.keyboardType,
+      this.onSaved,
+      this.validator,
+     })
+      : super(key: key);
 
   String hintText;
   Widget icon;
@@ -22,11 +23,13 @@ class MyTextField extends StatelessWidget {
   Function onSaved;
   TextInputType keyboardType;
 
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: TextFormField(
+
         cursorColor: Colors.black,
         maxLines: lines,
         keyboardType: keyboardType,
@@ -35,7 +38,6 @@ class MyTextField extends StatelessWidget {
         onSaved: (newValue) => onSaved(newValue),
         decoration: InputDecoration(
           filled: true,
-
           fillColor: Colors.white,
           alignLabelWithHint: true,
           hintText: hintText,
