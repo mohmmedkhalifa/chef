@@ -15,17 +15,7 @@ class _AppDrawerState extends State<AppDrawer> {
     return Drawer(
       child: ListView(
         children: [
-          UserAccountsDrawerHeader(
-            currentAccountPicture: SizedBox(
-              child: Switch(
-                value: check,
-                onChanged: (value) {
-                  check = value;
-                  setState(() {});
-                },
-              ),
-            ),
-          ),
+          UserAccountsDrawerHeader(),
           MyDrawerContent(
             title: 'الصفحة الرئيسية',
             icon: Icon(Icons.home),
