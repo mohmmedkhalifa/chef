@@ -11,13 +11,17 @@ import 'package:flutter/material.dart';
 
 import '../screens/about.dart';
 import '../screens/ad_details.dart';
+import '../screens/add_ads.dart';
 import '../screens/contact.dart';
+import '../screens/conversation.dart';
 import '../screens/home.dart';
+import '../screens/mail_box.dart';
 import '../screens/register.dart';
 import '../screens/register_chef.dart';
 import '../screens/register_restaurant.dart';
 import '../screens/restaurant_deatails.dart';
 import '../screens/splash.dart';
+import '../screens/terms.dart';
 import 'ads.dart';
 import 'restaurant.dart';
 
@@ -31,6 +35,10 @@ class Routes {
   static const String contact = '/Contact';
   static const String adDetails = '/ad-details';
   static const String restaurantDetails = '/restaurant-details';
+  static const String addAds = '/add-ads';
+  static const String terms = '/Terms';
+  static const String mailBox = '/mail-box';
+  static const String conversation = '/Conversation';
   static const all = <String>{
     splash,
     register,
@@ -41,6 +49,10 @@ class Routes {
     contact,
     adDetails,
     restaurantDetails,
+    addAds,
+    terms,
+    mailBox,
+    conversation,
   };
 }
 
@@ -57,6 +69,10 @@ class CustomRouter extends RouterBase {
     RouteDef(Routes.contact, page: Contact),
     RouteDef(Routes.adDetails, page: AdDetails),
     RouteDef(Routes.restaurantDetails, page: RestaurantDetails),
+    RouteDef(Routes.addAds, page: AddAds),
+    RouteDef(Routes.terms, page: Terms),
+    RouteDef(Routes.mailBox, page: MailBox),
+    RouteDef(Routes.conversation, page: Conversation),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -119,6 +135,30 @@ class CustomRouter extends RouterBase {
           restaurant: args.restaurant,
           ads: args.ads,
         ),
+        settings: data,
+      );
+    },
+    AddAds: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => AddAds(),
+        settings: data,
+      );
+    },
+    Terms: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => Terms(),
+        settings: data,
+      );
+    },
+    MailBox: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => MailBox(),
+        settings: data,
+      );
+    },
+    Conversation: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => Conversation(),
         settings: data,
       );
     },

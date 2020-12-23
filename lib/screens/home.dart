@@ -7,6 +7,7 @@ import 'package:chefo/widgets/my_app_drawer.dart';
 import 'package:chefo/widgets/my_card.dart';
 import 'package:chefo/widgets/my_home_title.dart';
 import 'package:chefo/widgets/my_restaurant_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -19,6 +20,7 @@ class Home extends StatelessWidget {
         title: 'الصفحة الرئيسية',
       ),
       body: ListView(
+        padding: EdgeInsets.only(bottom: 60),
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 16.0),

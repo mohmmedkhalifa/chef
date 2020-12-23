@@ -206,7 +206,9 @@ class _RegisterChefState extends State<RegisterChef> {
                     isChecked: isChecked,
                     title: 'قبول شروط التطبيق',
                     onChanged: (value){
-                      isChecked = value;
+                      setState(() {
+                        isChecked = value;
+                      });
                     },
                   ),
                   MyButton(

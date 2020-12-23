@@ -2,13 +2,30 @@ import 'package:auto_route/auto_route.dart';
 import 'package:chefo/models/route.gr.dart';
 import 'package:flutter/material.dart';
 
-class AppDrawer extends StatelessWidget {
+class AppDrawer extends StatefulWidget {
+  @override
+  _AppDrawerState createState() => _AppDrawerState();
+}
+
+class _AppDrawerState extends State<AppDrawer> {
+  bool check = false;
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
         children: [
-          UserAccountsDrawerHeader(),
+          UserAccountsDrawerHeader(
+            currentAccountPicture: SizedBox(
+              child: Switch(
+                value: check,
+                onChanged: (value) {
+                  check = value;
+                  setState(() {});
+                },
+              ),
+            ),
+          ),
           MyDrawerContent(
             title: 'الصفحة الرئيسية',
             icon: Icon(Icons.home),
