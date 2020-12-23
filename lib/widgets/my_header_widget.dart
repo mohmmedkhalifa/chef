@@ -21,11 +21,10 @@ class HeaderWidget extends StatelessWidget {
     return Container(
       child: ListTile(
         onTap: onTap,
-        trailing: trailing,
-        leading: leading,
+        trailing: leading,
+        leading: trailing,
         title: Text(
           title,
-          textAlign: TextAlign.right,
           style: TextStyle(
             fontSize: 20,
             fontFamily: 'DNT',
@@ -33,7 +32,6 @@ class HeaderWidget extends StatelessWidget {
         ),
         subtitle: Text(
           subtitle,
-          textAlign: TextAlign.right,
           style: TextStyle(
             fontSize: 16,
             fontFamily: 'DNT',

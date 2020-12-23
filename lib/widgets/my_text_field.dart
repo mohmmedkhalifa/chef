@@ -40,10 +40,10 @@ class MyTextField extends StatelessWidget {
           filled: true,
           fillColor: Colors.white,
           alignLabelWithHint: true,
-          hintText: hintText,
+          labelText: hintText,
           hintStyle: hintStyle,
-          suffixIcon: icon,
-          prefix: prefix,
+          prefixIcon: icon,
+          suffix: prefix,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(32),
             borderSide: BorderSide(

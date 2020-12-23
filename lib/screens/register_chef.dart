@@ -7,6 +7,7 @@ import 'package:chefo/widgets/my_header_widget.dart';
 import 'package:chefo/widgets/my_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:string_validator/string_validator.dart';
 
 class RegisterChef extends StatefulWidget {
@@ -43,7 +44,7 @@ class _RegisterChefState extends State<RegisterChef> {
             child: Column(
               children: [
                 Text(
-                  'الرجاء قبول شروط التطبيق',
+             translator.translate('plz_accpet_terms'),
                   style: Theme.of(context).textTheme.headline2,
                   textAlign: TextAlign.end,
                 ),
@@ -55,7 +56,7 @@ class _RegisterChefState extends State<RegisterChef> {
                     ExtendedNavigator.of(context).pop();
                   },
                   child: Text(
-                    'حسناً',
+                   translator.translate('ok'),
                     style: Theme.of(context).textTheme.headline1,
                     textAlign: TextAlign.end,
                   ),
@@ -70,10 +71,10 @@ class _RegisterChefState extends State<RegisterChef> {
 
   String validateName(String value) {
     if (value == null || value == '') {
-      return 'هذا الحقل مطلوب';
+      return translator.translate('required_field');
     }
     if (value.length < 3) {
-      return 'الاسم قصير';
+      return translator.translate('short');
     }
   }
 
@@ -83,11 +84,11 @@ class _RegisterChefState extends State<RegisterChef> {
 
   String validateEmail(String value) {
     if (value == null || value == '') {
-      return 'هذا الحقل مطلوب';
+      return translator.translate('required_field');
     } else if (value.length < 3) {
-      return 'الإيميل قصير';
+      return translator.translate('short');
     } else if (!isEmail(value)) {
-      return 'صيغة خاطئة';
+      return translator.translate('incorrect');
     }
   }
 
@@ -97,9 +98,9 @@ class _RegisterChefState extends State<RegisterChef> {
 
   String validatePassword(String value) {
     if (value == null || value == '') {
-      return 'هذا الحقل مطلوب';
+      return translator.translate('required_field');
     } else if (value.length < 3) {
-      return 'كلمة المرور قصيرة';
+      return translator.translate('short');
     }
   }
 
@@ -109,9 +110,9 @@ class _RegisterChefState extends State<RegisterChef> {
 
   String validatePhone(String value) {
     if (value == null || value == '') {
-      return 'هذا الحقل مطلوب';
+      return translator.translate('required_field');
     } else if (value.length < 10) {
-      return 'رقم الهاتف قصير';
+      return translator.translate('short');
     }
   }
 
@@ -121,9 +122,9 @@ class _RegisterChefState extends State<RegisterChef> {
 
   String validateDescription(String value) {
     if (value == null || value == '') {
-      return 'هذا الحقل مطلوب';
+      return translator.translate('required_field');
     } else if (value.length < 30) {
-      return 'الوصف قصير';
+      return translator.translate('short');
     }
   }
 
@@ -135,17 +136,17 @@ class _RegisterChefState extends State<RegisterChef> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      endDrawer: AppDrawer(),
+      drawer: AppDrawer(),
       appBar: MyAppBar(
-        title: 'تسجيل طبّاخ',
+        title: translator.translate('register_chef_title'),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             HeaderWidget(
               trailing: Image.asset('assets/images/user.png'),
-              title: 'تسجيل طبّاخ جديد',
-              subtitle: 'يمكن تسجيل طبّاخ جديد من هنا',
+              title: translator.translate('new_chef_register'),
+              subtitle: translator.translate('new_chef_register_sub'),
             ),
             SizedBox(
               height: size.height * 0.01,
@@ -156,7 +157,7 @@ class _RegisterChefState extends State<RegisterChef> {
                 children: [
                   MyTextField(
                     keyboardType: TextInputType.name,
-                    hintText: 'اسم الطبّاخ',
+                    hintText: translator.translate('chef_name'),
                     icon: Icon(
                       FontAwesomeIcons.user,
                       size: 16,
@@ -166,7 +167,7 @@ class _RegisterChefState extends State<RegisterChef> {
                   ),
                   MyTextField(
                     keyboardType: TextInputType.emailAddress,
-                    hintText: 'البريد الإلكتروني',
+                    hintText: translator.translate('email'),
                     icon: Icon(
                       FontAwesomeIcons.mailBulk,
                       size: 16,
@@ -177,7 +178,7 @@ class _RegisterChefState extends State<RegisterChef> {
                   MyTextField(
 
                     keyboardType: TextInputType.visiblePassword,
-                    hintText: 'كلمة المرور',
+                    hintText:translator.translate('phone'),
                     icon: Icon(
                       FontAwesomeIcons.key,
                       size: 16,
@@ -187,7 +188,7 @@ class _RegisterChefState extends State<RegisterChef> {
                   ),
                   MyTextField(
                     keyboardType: TextInputType.number,
-                    hintText: 'رقم الهاتف',
+                    hintText: translator.translate('phone'),
                     icon: Icon(
                       FontAwesomeIcons.phone,
                       size: 16,
@@ -198,13 +199,13 @@ class _RegisterChefState extends State<RegisterChef> {
                   MyTextField(
                     keyboardType: TextInputType.text,
                     lines: 8,
-                    hintText: '... يرجى كتابة مهاراتك هنا',
+                    hintText:translator.translate('skills'),
                     validator: validateDescription,
                     onSaved: saveDesc,
                   ),
                   MyCheckBox(
                     isChecked: isChecked,
-                    title: 'قبول شروط التطبيق',
+                    title: translator.translate('accept_terms'),
                     onChanged: (value){
                       setState(() {
                         isChecked = value;
@@ -212,7 +213,7 @@ class _RegisterChefState extends State<RegisterChef> {
                     },
                   ),
                   MyButton(
-                    text: 'تسجيل',
+                    text: translator.translate('register_button'),
                     onTap: saveForm,
                   ),
                 ],

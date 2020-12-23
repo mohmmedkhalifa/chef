@@ -4,6 +4,7 @@ import 'package:chefo/widgets/my_button.dart';
 import 'package:chefo/widgets/my_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:string_validator/string_validator.dart';
 
 class Contact extends StatefulWidget {
@@ -29,11 +30,11 @@ class _ContactState extends State<Contact> {
 
   String validateEmail(String value) {
     if (value == null || value == '') {
-      return 'هذا الحقل مطلوب';
+      return translator.translate('required_field');
     } else if (value.length < 3) {
-      return 'الإيميل قصير';
+      return translator.translate('short');
     } else if (!isEmail(value)) {
-      return 'صيغة خاطئة';
+      return translator.translate('incorrect');
     }
   }
 
@@ -43,9 +44,9 @@ class _ContactState extends State<Contact> {
 
   String validatePhone(String value) {
     if (value == null || value == '') {
-      return 'هذا الحقل مطلوب';
+      return translator.translate('required_field');
     } else if (value.length < 10) {
-      return 'رقم الهاتف قصير';
+      return translator.translate('short');
     }
   }
 
@@ -55,9 +56,9 @@ class _ContactState extends State<Contact> {
 
   String validateDescription(String value) {
     if (value == null || value == '') {
-      return 'هذا الحقل مطلوب';
+      return translator.translate('required_field');
     } else if (value.length < 30) {
-      return 'الوصف قصير';
+      return translator.translate('short');
     }
   }
 
@@ -69,9 +70,9 @@ class _ContactState extends State<Contact> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      endDrawer: AppDrawer(),
+      drawer: AppDrawer(),
       appBar: MyAppBar(
-        title: 'اتصل بنا',
+        title: translator.translate('call'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -86,7 +87,7 @@ class _ContactState extends State<Contact> {
                   MyTextField(
                     validator: validateEmail,
                     onSaved: saveEmail,
-                    hintText: 'البريد الإلكتروني',
+                    hintText: translator.translate('email'),
                     icon: Icon(
                       FontAwesomeIcons.mailBulk,
                       size: 16,
@@ -95,7 +96,7 @@ class _ContactState extends State<Contact> {
                   MyTextField(
                     validator: validatePhone,
                     onSaved: savePhone,
-                    hintText: 'رقم الهاتف',
+                    hintText: translator.translate('phone'),
                     icon: Icon(
                       FontAwesomeIcons.phone,
                       size: 16,
@@ -105,14 +106,14 @@ class _ContactState extends State<Contact> {
                     validator: validateDescription,
                     onSaved: saveForm,
                     lines: 8,
-                    hintText: '... يرجى كتابة مشكلتك هنا',
+                    hintText: translator.translate('problem'),
                   ),
                   SizedBox(
                     height: size.height * 0.1,
                   ),
                   MyButton(
                     onTap: saveForm,
-                    text: 'أرسل',
+                    text: translator.translate('send'),
                   ),
                 ],
               ),

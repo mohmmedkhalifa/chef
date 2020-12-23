@@ -14,7 +14,6 @@ class UploadImage extends StatelessWidget {
       tileColor: Colors.white,
       title: Text(
         text,
-        textAlign: TextAlign.right,
         style: TextStyle(
           fontSize: 20,
           fontFamily: 'DNT',

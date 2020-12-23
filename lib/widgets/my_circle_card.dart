@@ -34,7 +34,7 @@ class CircleCard extends StatelessWidget {
                   child: Text(
                     text,
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 20,
                       fontFamily: 'DNT',
                     ),
                   ),

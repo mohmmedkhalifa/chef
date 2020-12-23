@@ -8,6 +8,7 @@ import 'package:chefo/widgets/my_text_field.dart';
 import 'package:chefo/widgets/my_upload_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:string_validator/string_validator.dart';
 
 class RegisterRestaurant extends StatefulWidget {
@@ -44,7 +45,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
             child: Column(
               children: [
                 Text(
-                  'الرجاء قبول شروط التطبيق',
+             translator.translate('plz_accpet_terms'),
                   style: Theme.of(context).textTheme.headline2,
                   textAlign: TextAlign.end,
                 ),
@@ -56,9 +57,9 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                     ExtendedNavigator.of(context).pop();
                   },
                   child: Text(
-                    'حسناً',
+                   translator.translate('ok'),
                     style: Theme.of(context).textTheme.headline1,
-                    textAlign: TextAlign.end,
+
                   ),
                 )
               ],
@@ -71,10 +72,10 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
 
   String validateName(String value) {
     if (value == null || value == '') {
-      return 'هذا الحقل مطلوب';
+      return translator.translate('required_field');
     }
     if (value.length < 3) {
-      return 'الاسم قصير';
+      return translator.translate('short');
     }
   }
 
@@ -84,10 +85,10 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
 
   String validateRestName(String value) {
     if (value == null || value == '') {
-      return 'هذا الحقل مطلوب';
+      return translator.translate('required_field');
     }
     if (value.length < 3) {
-      return 'اسم المطعم قصير';
+      return translator.translate('short');
     }
   }
 
@@ -97,11 +98,11 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
 
   String validateEmail(String value) {
     if (value == null || value == '') {
-      return 'هذا الحقل مطلوب';
+      return translator.translate('required_field');
     } else if (value.length < 3) {
-      return 'الإيميل قصير';
+      return translator.translate('short');
     } else if (!isEmail(value)) {
-      return 'صيغة خاطئة';
+      return translator.translate('incorrect');
     }
   }
 
@@ -111,9 +112,9 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
 
   String validatePassword(String value) {
     if (value == null || value == '') {
-      return 'هذا الحقل مطلوب';
+      return translator.translate('required_field');
     } else if (value.length < 3) {
-      return 'كلمة المرور قصيرة';
+      return translator.translate('short');
     }
   }
 
@@ -123,9 +124,9 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
 
   String validatePhone(String value) {
     if (value == null || value == '') {
-      return 'هذا الحقل مطلوب';
+      return translator.translate('required_field');
     } else if (value.length < 10) {
-      return 'رقم الهاتف قصير';
+      return translator.translate('short');
     }
   }
 
@@ -135,9 +136,9 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
 
   String validateDescription(String value) {
     if (value == null || value == '') {
-      return 'هذا الحقل مطلوب';
+      return translator.translate('required_field');
     } else if (value.length < 50) {
-      return 'الوصف قصير';
+      return translator.translate('short');
     }
   }
 
@@ -149,9 +150,9 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      endDrawer: AppDrawer(),
+      drawer: AppDrawer(),
       appBar: MyAppBar(
-        title: 'تسجيل المطاعم',
+        title: translator.translate('register_restaurant_title'),
       ),
       body: Stack(
         children: [
@@ -160,8 +161,8 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
               children: [
                 HeaderWidget(
                   trailing: Image.asset('assets/images/shop.png'),
-                  title: 'تسجيل مطعم جديد',
-                  subtitle: 'يمكنك تسجيل مطعمك من هنا',
+                  title: translator.translate('new_rest_register'),
+                  subtitle: translator.translate('new_rest_register_sub'),
                 ),
                 SizedBox(
                   height: size.height * 0.01,
@@ -173,7 +174,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       MyTextField(
                         validator: validateRestName,
                         onSaved: saveRestName,
-                        hintText: 'اسم المطعم',
+                        hintText: translator.translate('res_title'),
                         icon: Icon(
                           FontAwesomeIcons.store,
                           size: 18,
@@ -182,7 +183,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       MyTextField(
                         validator: validateName,
                         onSaved: saveName,
-                        hintText: 'صاحب المطعم',
+                        hintText:translator.translate('res_owner'),
                         icon: Icon(
                           FontAwesomeIcons.user,
                           size: 18,
@@ -191,7 +192,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       MyTextField(
                         validator: validateEmail,
                         onSaved: saveEmail,
-                        hintText: 'البريد الإلكتروني',
+                        hintText: translator.translate('email'),
                         icon: Icon(
                           FontAwesomeIcons.mailBulk,
                           size: 16,
@@ -200,7 +201,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       MyTextField(
                         validator: validatePassword,
                         onSaved: savePassword,
-                        hintText: 'كلمة المرور',
+                        hintText:translator.translate('password'),
                         icon: Icon(
                           FontAwesomeIcons.key,
                           size: 16,
@@ -209,8 +210,8 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       ListTile(
                         tileColor: Colors.white,
                         title: Text(
-                          'حدد موقعك',
-                          textAlign: TextAlign.right,
+                          translator.translate('location'),
+
                           style: TextStyle(
                             fontSize: 20,
                             fontFamily: 'DNT',
@@ -224,19 +225,19 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       MyTextField(
                         validator: validatePhone,
                         onSaved: savePhone,
-                        hintText: 'رقم الهاتف',
+                        hintText: translator.translate('phone'),
                         icon: Icon(
                           FontAwesomeIcons.phone,
                           size: 16,
                         ),
                       ),
                       UploadImage(
-                        text: 'شعار المتجر',
+                        text: translator.translate('logo'),
                       ),
                       MyTextField(
                         validator: validateDescription,
                         onSaved: saveDesc,
-                        hintText: 'نشاط الشركة',
+                        hintText: translator.translate('activityflut'),
                         icon: Icon(
                           FontAwesomeIcons.phoenixFramework,
                           size: 16,
@@ -244,7 +245,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       ),
                       MyCheckBox(
                         isChecked: isChecked,
-                        title: 'قبول شروط التطبيق',
+                        title:   translator.translate('accept_terms'),
                         onChanged: (value) {
                           setState(() {
                             isChecked = value;
@@ -252,7 +253,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                         },
                       ),
                       MyButton(
-                        text: 'تسجيل',
+                        text:  translator.translate('register_button'),
                         onTap: saveForm,
                       ),
                     ],

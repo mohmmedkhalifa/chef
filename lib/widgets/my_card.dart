@@ -12,7 +12,8 @@ class MyCard extends StatelessWidget {
   }) : super(key: key);
 
   Ads ad;
-Function onTap;
+  Function onTap;
+
   //392.72727272727275
   //  759.2727272727273
 
@@ -21,7 +22,7 @@ Function onTap;
     Size size = MediaQuery.of(context).size;
 
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         ExtendedNavigator.of(context).push(
           Routes.adDetails,
           arguments: AdDetailsArguments(ad: ad),
@@ -60,19 +61,17 @@ Function onTap;
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     ListTile(
-                      trailing: Icon(FontAwesomeIcons.file),
+                      leading: Icon(FontAwesomeIcons.file),
                       title: Text(
                         ad.title,
-                        textAlign: TextAlign.end,
                         style: Theme.of(context).textTheme.headline1,
                         maxLines: 3,
                       ),
                     ),
                     ListTile(
-                      trailing: Icon(FontAwesomeIcons.clock),
+                      leading: Icon(FontAwesomeIcons.clock),
                       title: Text(
                         ad.dateTime,
-                        textAlign: TextAlign.end,
                         style: Theme.of(context).textTheme.headline1,
                         maxLines: 3,
                       ),

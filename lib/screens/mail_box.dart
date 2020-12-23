@@ -5,6 +5,7 @@ import 'package:chefo/widgets/my_app_bar.dart';
 import 'package:chefo/widgets/my_app_drawer.dart';
 import 'package:chefo/widgets/my_header_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 class MailBox extends StatelessWidget {
   @override
@@ -12,9 +13,9 @@ class MailBox extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.redAccent[50],
       appBar: MyAppBar(
-        title: 'الرسائل',
+        title: translator.translate('messages'),
       ),
-      endDrawer: AppDrawer(),
+      drawer: AppDrawer(),
       body: ListView.builder(
         itemCount: users.length,
         itemBuilder: (context, index) {

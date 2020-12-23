@@ -6,6 +6,7 @@ import 'package:chefo/widgets/my_app_drawer.dart';
 import 'package:chefo/widgets/my_circle_card.dart';
 import 'package:chefo/widgets/my_header_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 class Register extends StatelessWidget {
   @override
@@ -13,9 +14,9 @@ class Register extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      endDrawer: AppDrawer(),
+     drawer: AppDrawer(),
       appBar: MyAppBar(
-        title: 'التسجيل',
+        title:translator.translate('register'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -24,8 +25,8 @@ class Register extends StatelessWidget {
               height: size.height * (20 / size.height),
             ),
             HeaderWidget(
-              title: ' مستخدم جديد',
-              subtitle: 'يمكنك تسجيل عضوية مجاناً',
+              title:translator.translate('new_user_type'),
+              subtitle:translator.translate('new_user_sub'),
             ),
             SizedBox(
               height: size.height * (60 / size.height),
@@ -33,7 +34,7 @@ class Register extends StatelessWidget {
             Column(
               children: [
                 CircleCard(
-                  text: 'مطعم',
+                  text: translator.translate('restaurant'),
                   image: 'assets/images/shop.png',
                   onTap: () {
                     ExtendedNavigator.of(context).push(
@@ -45,7 +46,7 @@ class Register extends StatelessWidget {
                   height: size.height * (15 / size.height),
                 ),
                 CircleCard(
-                  text: 'طبّاخ',
+                  text:translator.translate('chef'),
                   image: 'assets/images/user.png',
                   onTap: () {
                     ExtendedNavigator.of(context).push(Routes.registerChef);

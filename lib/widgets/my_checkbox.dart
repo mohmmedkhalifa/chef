@@ -23,7 +23,7 @@ class MyCheckBox extends StatelessWidget {
           title: Text(
             title,
             style: Theme.of(context).textTheme.headline2,
-            textAlign: TextAlign.end,
+
           ),
           value: isChecked,
           onChanged: onChanged,

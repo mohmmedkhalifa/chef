@@ -2,6 +2,7 @@ import 'package:chefo/widgets/my_app_bar.dart';
 import 'package:chefo/widgets/my_app_drawer.dart';
 import 'package:chefo/widgets/my_logo.dart';
 import 'package:flutter/material.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 import '../const.dart';
 
@@ -10,13 +11,13 @@ class Terms extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      endDrawer: AppDrawer(),
+      drawer: AppDrawer(),
       appBar: MyAppBar(
-        title: 'الشروط والأحكام',
+        title:  translator.translate('terms'),
       ),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               height: size.height * 0.1,
@@ -43,7 +44,7 @@ class Terms extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 32.0),
                     child: Text(
-                      'الشروط والأحكام',
+                      translator.translate('terms'),
                       style: TextStyle(
                           fontSize: 20,
                           foreground: Paint()..shader = linearGradient,
@@ -54,8 +55,7 @@ class Terms extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 32.0, vertical: 16),
                     child: Text(
-                      KTerms,
-                      textAlign: TextAlign.right,
+                      translator.translate('terms_text'),
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,

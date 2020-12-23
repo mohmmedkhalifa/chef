@@ -3,6 +3,7 @@ import 'package:chefo/widgets/my_app_drawer.dart';
 
 import 'package:chefo/widgets/my_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 class AdDetails extends StatelessWidget {
   Ads ad;
@@ -13,6 +14,7 @@ class AdDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      drawer: AppDrawer(),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
@@ -45,7 +47,7 @@ class AdDetails extends StatelessWidget {
       ),
       endDrawer: AppDrawer(),
       appBar: MyAppBar(
-        title: 'تفاصيل الإعلان',
+        title:translator.translate('ad_details'),
       ),
       body: SingleChildScrollView(
 
@@ -84,7 +86,7 @@ class AdDetails extends StatelessWidget {
                     child: Text(
                       ad.title,
                       style: Theme.of(context).textTheme.headline2,
-                      textAlign: TextAlign.end,
+
                     ),
                   ),
                   Divider(),
@@ -93,7 +95,7 @@ class AdDetails extends StatelessWidget {
                     child: Text(
                       ad.description,
                       style: Theme.of(context).textTheme.headline1,
-                      textAlign: TextAlign.end,
+
                     ),
                   ),
                   Padding(
@@ -101,7 +103,7 @@ class AdDetails extends StatelessWidget {
                     child: Text(
                       ad.description,
                       style: Theme.of(context).textTheme.headline1,
-                      textAlign: TextAlign.end,
+
                     ),
                   ),
 
@@ -111,10 +113,10 @@ class AdDetails extends StatelessWidget {
                     child: ListTile(
                       title: Text(
                         ad.owner,
-                        textAlign: TextAlign.end,
+
                         style: Theme.of(context).textTheme.headline2,
                       ),
-                      trailing: CircleAvatar(
+                      leading: CircleAvatar(
                         radius: 30,
                         backgroundColor: Colors.white,
                         backgroundImage: AssetImage(

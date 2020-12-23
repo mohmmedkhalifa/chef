@@ -1,9 +1,9 @@
-import 'package:chefo/widgets/my_app_drawer.dart';
-
 import 'package:chefo/widgets/my_app_bar.dart';
+import 'package:chefo/widgets/my_app_drawer.dart';
 import 'package:chefo/widgets/my_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 import '../const.dart';
 
@@ -12,9 +12,9 @@ class About extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      endDrawer: AppDrawer(),
+      drawer: AppDrawer(),
       appBar: MyAppBar(
-        title: 'عن التطبيق',
+        title: translator.translate('add_ad'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -45,7 +45,7 @@ class About extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 32.0),
                     child: Text(
-                      'عن التطبيق',
+                        translator.translate('about'),
                       style: TextStyle(
                           fontSize: 20,
                           foreground: Paint()..shader = linearGradient,
@@ -56,8 +56,8 @@ class About extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 32.0, vertical: 16),
                     child: Text(
-                      KAbout,
-                      textAlign: TextAlign.right,
+                      translator.translate('about_text'),
+
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,
@@ -66,19 +66,19 @@ class About extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16, horizontal: 16),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Icon(
-                          FontAwesomeIcons.phoneAlt,
+                          FontAwesomeIcons.phone,
                           color: Theme.of(context).primaryColor,
                         ),
                         Padding(
-                          padding:
-                              const EdgeInsets.symmetric(horizontal: 32),
+                          padding: const EdgeInsets.symmetric(horizontal: 32),
                           child: Icon(
-                            FontAwesomeIcons.shareAlt,
+                            FontAwesomeIcons.share,
                             color: Theme.of(context).primaryColor,
                           ),
                         ),

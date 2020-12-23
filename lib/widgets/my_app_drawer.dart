@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:chefo/models/route.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 class AppDrawer extends StatefulWidget {
   @override
@@ -15,44 +16,70 @@ class _AppDrawerState extends State<AppDrawer> {
     return Drawer(
       child: ListView(
         children: [
-          UserAccountsDrawerHeader(),
+          UserAccountsDrawerHeader(
+            accountName: ListTile(
+              title: Text(
+                  translator.translate(
+                    'switch_lang',
+                  ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline2
+                      .copyWith(color: Colors.white)),
+              trailing: Switch(
+
+                value: check,
+                onChanged: (value) {
+                  check = value;
+                  setState(() {});
+                  translator.setNewLanguage(
+                    context,
+                    newLanguage: translator.currentLanguage == 'ar' ? 'en' : 'ar',
+                    remember: true,
+                    restart: true,
+
+                  );
+                },
+              ),
+            ),
+          ),
           MyDrawerContent(
-            title: 'الصفحة الرئيسية',
+            title: translator.translate('home'),
             icon: Icon(Icons.home),
             route: Routes.home,
           ),
           MyDrawerContent(
-            title: 'الرسائل',
+            title: translator.translate('messages'),
             icon: Icon(Icons.mail),
             route: Routes.mailBox,
           ),
           MyDrawerContent(
-            title: 'تسجيل مطعم',
+            title: translator.translate('new_rest_register'),
             icon: Icon(Icons.store),
             route: Routes.registerRestaurant,
           ),
           MyDrawerContent(
-            title: 'تسجيل طبّاخ',
+            title: translator.translate('new_chef_register'),
             icon: Icon(Icons.person),
             route: Routes.registerChef,
           ),
           MyDrawerContent(
-            title: 'أضف إعلان',
+            title: translator.translate('add_ad'),
             icon: Icon(Icons.add),
             route: Routes.addAds,
           ),
           MyDrawerContent(
-            title: 'تواصل',
+            title: translator.translate('contact'),
             icon: Icon(Icons.phone),
             route: Routes.contact,
           ),
           MyDrawerContent(
-            title: 'الشروط والأحكام',
+            title: 'terms',
             icon: Icon(Icons.menu_book),
             route: Routes.terms,
           ),
           MyDrawerContent(
-            title: 'حول التطبيق',
+            title: 'about',
             icon: Icon(Icons.info),
             route: Routes.about,
           ),
@@ -86,9 +113,8 @@ class MyDrawerContent extends StatelessWidget {
           title: Text(
             title,
             style: TextStyle(fontSize: 18, fontFamily: 'DNT'),
-            textAlign: TextAlign.end,
           ),
-          trailing: icon,
+          leading: icon,
         ),
         Divider(),
       ],

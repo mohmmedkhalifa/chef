@@ -9,15 +9,16 @@ import 'package:chefo/widgets/my_home_title.dart';
 import 'package:chefo/widgets/my_restaurant_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      endDrawer: AppDrawer(),
+      drawer: AppDrawer(),
       appBar: MyAppBar(
-        title: 'الصفحة الرئيسية',
+        title: translator.translate('home'),
       ),
       body: ListView(
         padding: EdgeInsets.only(bottom: 60),
@@ -47,7 +48,7 @@ class Home extends StatelessWidget {
           ),
           HomeTitle(
             size: size,
-            title: 'الإعلانات الحديثة',
+            title: translator.translate('recent_ads'),
           ),
           Container(
             height: size.height * (320 / size.height),
@@ -68,7 +69,7 @@ class Home extends StatelessWidget {
           ),
           HomeTitle(
             size: size,
-            title: 'الفنادق والمطابخ',
+            title: translator.translate('hotel_and_restaurant'),
           ),
           Padding(
             padding: const EdgeInsets.all(8),

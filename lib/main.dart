@@ -3,11 +3,21 @@ import 'package:chefo/models/route.gr.dart';
 import 'package:chefo/screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 import 'const.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await translator.init(
+    localeDefault: LocalizationDefaultType.device,
+    languagesList: <String>['ar', 'en'],
+    assetsDirectory: 'assets/langs/',
+  );
+
+  runApp(
+    LocalizedApp(child: MyApp()),
+  );
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark));
@@ -20,6 +30,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: translator.delegates,
+      locale: translator.locale,
+      supportedLocales: translator.locals(),
       builder: ExtendedNavigator.builder<CustomRouter>(
         router: CustomRouter(),
       ),

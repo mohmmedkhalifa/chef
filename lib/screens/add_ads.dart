@@ -7,6 +7,7 @@ import 'package:chefo/widgets/my_text_field.dart';
 import 'package:chefo/widgets/my_upload_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 class AddAds extends StatefulWidget {
   @override
@@ -35,10 +36,10 @@ class _AddAdsState extends State<AddAds> {
 
   String validateTitle(String value) {
     if (value == null || value == '') {
-      return 'Required Field';
+      return translator.translate('required_field');
     }
     if (value.length < 3) {
-      return 'Name is too short';
+      return translator.translate('short');
     }
   }
 
@@ -48,9 +49,9 @@ class _AddAdsState extends State<AddAds> {
 
   String validateDescription(String value) {
     if (value == null || value == '') {
-      return 'Required Field';
+      return translator.translate('required_field');
     } else if (value.length < 50) {
-      return 'Description is too short';
+      return translator.translate('short');
     }
   }
 
@@ -62,9 +63,9 @@ class _AddAdsState extends State<AddAds> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      endDrawer: AppDrawer(),
+     drawer: AppDrawer(),
       appBar: MyAppBar(
-        title: 'إضافة إعلان',
+        title: translator.translate('add_ad'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -78,7 +79,7 @@ class _AddAdsState extends State<AddAds> {
                 children: [
                   MyTextField(
                     keyboardType: TextInputType.name,
-                    hintText: 'عنوان الإعلان',
+                    hintText:translator.translate('ad_title'),
                     icon: Icon(
                       FontAwesomeIcons.user,
                       size: 16,
@@ -87,18 +88,18 @@ class _AddAdsState extends State<AddAds> {
                     onSaved: saveTitle,
                   ),
                   UploadImage(
-                    text: 'يرجى رفع صورة المتجر',
+                    text: translator.translate('logo'),
                   ),
                   MyTextField(
                     keyboardType: TextInputType.text,
                     lines: 8,
-                    hintText: '... الوصف',
+                    hintText: translator.translate('desc'),
                     validator: validateDescription,
                     onSaved: saveDesc,
                   ),
                   MyCheckBox(
                     isChecked: isChecked1,
-                    title: 'استقبال رسائل داخلية',
+                    title:  translator.translate('receive_msg'),
                     onChanged: (value) {
                       setState(() {
                         isChecked1 = value;
@@ -107,7 +108,7 @@ class _AddAdsState extends State<AddAds> {
                   ),
                   MyCheckBox(
                     isChecked: isChecked2,
-                    title: 'السماح بإعادة النشر',
+                    title:  translator.translate('allow_repost'),
                     onChanged: (value) {
                       setState(() {
                         isChecked2 = value;
@@ -116,7 +117,7 @@ class _AddAdsState extends State<AddAds> {
                   ),
                   MyCheckBox(
                     isChecked: isChecked3,
-                    title: 'عدم الإزعاج',
+                    title:  translator.translate('dont_disturb'),
                     onChanged: (value) {
                       setState(() {
                         isChecked3 = value;
@@ -124,7 +125,7 @@ class _AddAdsState extends State<AddAds> {
                     },
                   ),
                   MyButton(
-                    text: 'إضافة إعلان',
+                    text: translator.translate('add_ad'),
                     onTap: saveForm,
                   ),
                 ],

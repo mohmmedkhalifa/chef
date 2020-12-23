@@ -24,7 +24,6 @@ class HomeTitle extends StatelessWidget {
           child: Text(
             title ,
             style: Theme.of(context).textTheme.headline3,
-            textAlign: TextAlign.end,
           ),
         ),
         SizedBox(

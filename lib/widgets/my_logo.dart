@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 class Logo extends StatelessWidget {
   const Logo({
@@ -22,7 +23,7 @@ class Logo extends StatelessWidget {
           height: size.height * 0.03,
         ),
         Text(
-          'الشيف',
+          translator.translate('title'),
           style: Theme.of(context).textTheme.headline5,
         ),
       ],

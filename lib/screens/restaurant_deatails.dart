@@ -2,10 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:chefo/models/ads.dart';
 import 'package:chefo/models/restaurant.dart';
 import 'package:chefo/models/route.gr.dart';
-import 'package:chefo/widgets/my_app_drawer.dart';
-
 import 'package:chefo/widgets/my_app_bar.dart';
+import 'package:chefo/widgets/my_app_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 class RestaurantDetails extends StatelessWidget {
   List<Ads> ads;
@@ -18,13 +18,13 @@ class RestaurantDetails extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: MyAppBar(
-        title: 'تفاصيل المتجر',
+        title: translator.translate('restaurant_details'),
       ),
-      endDrawer: AppDrawer(),
+      drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 width: double.infinity,
@@ -57,10 +57,10 @@ class RestaurantDetails extends StatelessWidget {
                       child: ListTile(
                         title: Text(
                           restaurant.owner,
-                          textAlign: TextAlign.end,
+
                           style: Theme.of(context).textTheme.headline2,
                         ),
-                        trailing: CircleAvatar(
+                        leading: CircleAvatar(
                           radius: 30,
                           backgroundColor: Colors.white,
                           backgroundImage: AssetImage(
@@ -75,9 +75,9 @@ class RestaurantDetails extends StatelessWidget {
                         padding:
                             const EdgeInsets.only(bottom: 16.0, top: 8),
                         child: Text(
-                          'إعلانات المطعم',
+                            translator.translate('rest_ads'),
                           style: Theme.of(context).textTheme.headline2,
-                          textAlign: TextAlign.end,
+
                         ),
                       ),
                     ),
@@ -92,11 +92,11 @@ class RestaurantDetails extends StatelessWidget {
                           child: Column(
                             children: [
                               ListTile(
-                                leading: Icon(
-                                  Icons.arrow_back_ios,
+                                trailing: Icon(
+                                  Icons.arrow_forward_ios_outlined,
                                   color: Colors.black,
                                 ),
-                                trailing: Icon(
+                                leading: Icon(
                                   Icons.circle,
                                   color: Colors.black,
                                 ),
@@ -104,7 +104,7 @@ class RestaurantDetails extends StatelessWidget {
                                   ads[index].title,
                                   style:
                                       Theme.of(context).textTheme.headline2,
-                                  textAlign: TextAlign.end,
+
                                 ),
                                 onTap: () {
                                   ExtendedNavigator.of(context).push(
