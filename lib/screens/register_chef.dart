@@ -178,7 +178,7 @@ class _RegisterChefState extends State<RegisterChef> {
                   MyTextField(
 
                     keyboardType: TextInputType.visiblePassword,
-                    hintText:translator.translate('phone'),
+                    hintText:translator.translate('password'),
                     icon: Icon(
                       FontAwesomeIcons.key,
                       size: 16,

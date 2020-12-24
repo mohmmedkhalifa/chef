@@ -74,12 +74,12 @@ class _AppDrawerState extends State<AppDrawer> {
             route: Routes.contact,
           ),
           MyDrawerContent(
-            title: 'terms',
+            title:  translator.translate('terms'),
             icon: Icon(Icons.menu_book),
             route: Routes.terms,
           ),
           MyDrawerContent(
-            title: 'about',
+            title:  translator.translate('about'),
             icon: Icon(Icons.info),
             route: Routes.about,
           ),
