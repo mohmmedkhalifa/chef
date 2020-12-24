@@ -237,7 +237,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       MyTextField(
                         validator: validateDescription,
                         onSaved: saveDesc,
-                        hintText: translator.translate('activityflut'),
+                        hintText: translator.translate('activity'),
                         icon: Icon(
                           FontAwesomeIcons.phoenixFramework,
                           size: 16,
