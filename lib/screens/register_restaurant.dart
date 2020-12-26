@@ -45,7 +45,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
             child: Column(
               children: [
                 Text(
-             translator.translate('plz_accpet_terms'),
+                  translator.translate('plz_accpet_terms'),
                   style: Theme.of(context).textTheme.headline2,
                   textAlign: TextAlign.end,
                 ),
@@ -57,9 +57,8 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                     ExtendedNavigator.of(context).pop();
                   },
                   child: Text(
-                   translator.translate('ok'),
+                    translator.translate('ok'),
                     style: Theme.of(context).textTheme.headline1,
-
                   ),
                 )
               ],
@@ -152,7 +151,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
     return Scaffold(
       drawer: AppDrawer(),
       appBar: MyAppBar(
-        title: translator.translate('register_restaurant_title'),
+        title: 'register_restaurant_title',
       ),
       body: Stack(
         children: [
@@ -183,7 +182,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       MyTextField(
                         validator: validateName,
                         onSaved: saveName,
-                        hintText:translator.translate('res_owner'),
+                        hintText: translator.translate('res_owner'),
                         icon: Icon(
                           FontAwesomeIcons.user,
                           size: 18,
@@ -201,7 +200,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       MyTextField(
                         validator: validatePassword,
                         onSaved: savePassword,
-                        hintText:translator.translate('password'),
+                        hintText: translator.translate('password'),
                         icon: Icon(
                           FontAwesomeIcons.key,
                           size: 16,
@@ -211,7 +210,6 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                         tileColor: Colors.white,
                         title: Text(
                           translator.translate('location'),
-
                           style: TextStyle(
                             fontSize: 20,
                             fontFamily: 'DNT',
@@ -245,7 +243,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                       ),
                       MyCheckBox(
                         isChecked: isChecked,
-                        title:   translator.translate('accept_terms'),
+                        title: translator.translate('accept_terms'),
                         onChanged: (value) {
                           setState(() {
                             isChecked = value;
@@ -253,7 +251,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                         },
                       ),
                       MyButton(
-                        text:  translator.translate('register_button'),
+                        text: translator.translate('register_button'),
                         onTap: saveForm,
                       ),
                     ],

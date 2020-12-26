@@ -13,7 +13,7 @@ class Terms extends StatelessWidget {
     return Scaffold(
       drawer: AppDrawer(),
       appBar: MyAppBar(
-        title:  translator.translate('terms'),
+        title: 'terms',
       ),
       body: SingleChildScrollView(
         child: Column(

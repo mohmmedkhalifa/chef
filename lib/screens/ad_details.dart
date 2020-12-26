@@ -47,7 +47,7 @@ class AdDetails extends StatelessWidget {
       ),
       endDrawer: AppDrawer(),
       appBar: MyAppBar(
-        title:translator.translate('ad_details'),
+        title:'ad_details',
       ),
       body: SingleChildScrollView(
 

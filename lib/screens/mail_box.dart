@@ -13,7 +13,7 @@ class MailBox extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.redAccent[50],
       appBar: MyAppBar(
-        title: translator.translate('messages'),
+        title: 'messages',
       ),
       drawer: AppDrawer(),
       body: ListView.builder(

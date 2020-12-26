@@ -36,7 +36,7 @@ class MyAppBar extends StatelessWidget with PreferredSizeWidget {
               ),
       ],
       title: Text(
-        title,
+        translator.translate(title),
         style:
             Theme.of(context).textTheme.headline2.copyWith(color: Colors.white),
       ),

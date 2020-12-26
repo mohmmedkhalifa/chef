@@ -18,7 +18,7 @@ class RestaurantDetails extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: MyAppBar(
-        title: translator.translate('restaurant_details'),
+        title: 'restaurant_details',
       ),
       drawer: AppDrawer(),
       body: SingleChildScrollView(

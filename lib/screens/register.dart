@@ -16,7 +16,7 @@ class Register extends StatelessWidget {
     return Scaffold(
      drawer: AppDrawer(),
       appBar: MyAppBar(
-        title:translator.translate('register'),
+        title:'register',
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -34,7 +34,7 @@ class Register extends StatelessWidget {
             Column(
               children: [
                 CircleCard(
-                  text: translator.translate('restaurant'),
+                  text: 'restaurant',
                   image: 'assets/images/shop.png',
                   onTap: () {
                     ExtendedNavigator.of(context).push(
@@ -46,7 +46,7 @@ class Register extends StatelessWidget {
                   height: size.height * (15 / size.height),
                 ),
                 CircleCard(
-                  text:translator.translate('chef'),
+                  text:'chef',
                   image: 'assets/images/user.png',
                   onTap: () {
                     ExtendedNavigator.of(context).push(Routes.registerChef);

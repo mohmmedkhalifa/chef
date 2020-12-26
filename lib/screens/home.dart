@@ -69,7 +69,7 @@ class Home extends StatelessWidget {
           ),
           HomeTitle(
             size: size,
-            title: translator.translate('hotel_and_restaurant'),
+            title:'hotel_and_restaurant',
           ),
           Padding(
             padding: const EdgeInsets.all(8),

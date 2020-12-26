@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 class CircleCard extends StatelessWidget {
   CircleCard({
@@ -32,7 +33,7 @@ class CircleCard extends StatelessWidget {
               Expanded(
                 child: Center(
                   child: Text(
-                    text,
+                    translator.translate(text),
                     style: TextStyle(
                       fontSize: 20,
                       fontFamily: 'DNT',

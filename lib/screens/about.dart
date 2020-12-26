@@ -14,7 +14,7 @@ class About extends StatelessWidget {
     return Scaffold(
       drawer: AppDrawer(),
       appBar: MyAppBar(
-        title: translator.translate('add_ad'),
+        title: 'add_ad',
       ),
       body: SingleChildScrollView(
         child: Column(

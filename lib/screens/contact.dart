@@ -72,7 +72,7 @@ class _ContactState extends State<Contact> {
     return Scaffold(
       drawer: AppDrawer(),
       appBar: MyAppBar(
-        title: translator.translate('call'),
+        title: 'call',
       ),
       body: SingleChildScrollView(
         child: Column(

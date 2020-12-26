@@ -138,7 +138,7 @@ class _RegisterChefState extends State<RegisterChef> {
     return Scaffold(
       drawer: AppDrawer(),
       appBar: MyAppBar(
-        title: translator.translate('register_chef_title'),
+        title: 'register_chef_title',
       ),
       body: SingleChildScrollView(
         child: Column(

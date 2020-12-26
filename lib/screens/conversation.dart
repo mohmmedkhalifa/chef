@@ -9,7 +9,7 @@ class Conversation extends StatelessWidget {
     return Scaffold(
      drawer: AppDrawer(),
       appBar: MyAppBar(
-        title: translator.translate('conversation'),
+        title:'conversation',
       ),
       body: Column(
         children: [
