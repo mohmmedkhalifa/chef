@@ -15,7 +15,7 @@ class MailBox extends StatelessWidget {
       appBar: MyAppBar(
         title: 'messages',
       ),
-      drawer: AppDrawer(),
+      endDrawer: AppDrawer(),
       body: ListView.builder(
         itemCount: users.length,
         itemBuilder: (context, index) {

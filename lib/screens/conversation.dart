@@ -7,7 +7,7 @@ class Conversation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     drawer: AppDrawer(),
+      endDrawer: AppDrawer(),
       appBar: MyAppBar(
         title:'conversation',
       ),

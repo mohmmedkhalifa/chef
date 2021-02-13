@@ -1,5 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:chefo/backend/repository.dart';
+import 'package:chefo/backend/server.dart';
 import 'package:chefo/models/route.gr.dart';
+import 'package:chefo/models/users_model.dart';
 import 'package:flutter/material.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
@@ -17,29 +20,42 @@ class _AppDrawerState extends State<AppDrawer> {
       child: ListView(
         children: [
           UserAccountsDrawerHeader(
-            accountName: ListTile(
-              title: Text(
-                  translator.translate(
-                    'switch_lang',
+            accountName: Padding(
+              padding: const EdgeInsets.only(top: 24.0),
+              child: Text(Repository.repository.appUser.email),
+            ),
+            currentAccountPicture: Repository.repository.appUser.logoUrl != null
+                ? CircleAvatar(
+                    backgroundImage:
+                        NetworkImage(Repository.repository.appUser.logoUrl),
+                  )
+                : CircleAvatar(
+                    child: Text(Repository.repository.appUser.userName[0]
+                        .toUpperCase()),
                   ),
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline2
-                      .copyWith(color: Colors.white)),
-              trailing: Switch(
-                value: check,
-                onChanged: (value) {
-                  check = value;
-                  setState(() {});
-                  translator.setNewLanguage(
-                    context,
-                    newLanguage:
-                        translator.currentLanguage == 'ar' ? 'en' : 'ar',
-                    remember: true,
-                    restart: true,
-                  );
-                },
-              ),
+            accountEmail: Text(Repository.repository.appUser.userName),
+          ),
+          ListTile(
+            title: Text(
+                translator.translate(
+                  'switch_lang',
+                ),
+                style: Theme.of(context)
+                    .textTheme
+                    .headline2
+                    .copyWith(color: Colors.black)),
+            trailing: Switch(
+              value: check,
+              onChanged: (value) {
+                check = value;
+                setState(() {});
+                translator.setNewLanguage(
+                  context,
+                  newLanguage: translator.currentLanguage == 'ar' ? 'en' : 'ar',
+                  remember: true,
+                  restart: true,
+                );
+              },
             ),
           ),
           MyDrawerContent(
@@ -51,16 +67,6 @@ class _AppDrawerState extends State<AppDrawer> {
             title: 'messages',
             icon: Icon(Icons.mail),
             route: Routes.mailBox,
-          ),
-          MyDrawerContent(
-            title: 'new_rest_register',
-            icon: Icon(Icons.store),
-            route: Routes.registerRestaurant,
-          ),
-          MyDrawerContent(
-            title: 'new_chef_register',
-            icon: Icon(Icons.person),
-            route: Routes.registerChef,
           ),
           MyDrawerContent(
             title: 'add_ad',
@@ -81,6 +87,23 @@ class _AppDrawerState extends State<AppDrawer> {
             title: 'about',
             icon: Icon(Icons.info),
             route: Routes.about,
+          ),
+          Repository.repository.appUser.type == userType.admin
+              ? MyDrawerContent(
+                  title: 'control_panel',
+                  icon: Icon(Icons.admin_panel_settings),
+                  route: Routes.controlPanel,
+                )
+              : Container(),
+          ListTile(
+            onTap: () {
+              signOut(context);
+            },
+            title: Text(
+              translator.translate('logout'),
+              style: TextStyle(fontSize: 18, fontFamily: 'DNT'),
+            ),
+            leading: Icon(Icons.logout),
           ),
         ],
       ),

@@ -19,7 +19,7 @@ class MyCheckBox extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(36),
         child: CheckboxListTile(
-          tileColor: Colors.white,
+         activeColor: Colors.white,
           title: Text(
             title,
             style: Theme.of(context).textTheme.headline2,

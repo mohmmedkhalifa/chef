@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "708960553287",
+    "project_id": "chefo-4aede",
+    "storage_bucket": "chefo-4aede.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708960553287:android:221bb2d43376b88ef02462",
+        "android_client_info": {
+          "package_name": "com.mody.chefo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "708960553287-3qfqd2mmqels3sjlq4fqo0j508hur23n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBW1UoriYQJrwdZSgjt3O3wqE1_EeofF0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "708960553287-3qfqd2mmqels3sjlq4fqo0j508hur23n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

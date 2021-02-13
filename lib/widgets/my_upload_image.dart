@@ -5,13 +5,19 @@ class UploadImage extends StatelessWidget {
   UploadImage({
     Key key,
     this.text,
+    this.onTap,
+    this.imgUrl ,
   }) : super(key: key);
-
+  Function onTap;
   String text;
+  String imgUrl;
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: onTap,
       tileColor: Colors.white,
+      trailing:imgUrl != null ?Image.network(imgUrl) : null,
       title: Text(
         text,
         style: TextStyle(

@@ -63,7 +63,7 @@ class _AddAdsState extends State<AddAds> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-     drawer: AppDrawer(),
+      endDrawer: AppDrawer(),
       appBar: MyAppBar(
         title: 'add_ad',
       ),

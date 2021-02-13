@@ -14,7 +14,6 @@ class AdDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      drawer: AppDrawer(),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(

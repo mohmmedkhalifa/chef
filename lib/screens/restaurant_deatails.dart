@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:chefo/models/ads.dart';
 import 'package:chefo/models/restaurant.dart';
+
 import 'package:chefo/models/route.gr.dart';
 import 'package:chefo/widgets/my_app_bar.dart';
 import 'package:chefo/widgets/my_app_drawer.dart';
@@ -20,7 +21,7 @@ class RestaurantDetails extends StatelessWidget {
       appBar: MyAppBar(
         title: 'restaurant_details',
       ),
-      drawer: AppDrawer(),
+      endDrawer: AppDrawer(),
       body: SingleChildScrollView(
         child: SingleChildScrollView(
           child: Column(

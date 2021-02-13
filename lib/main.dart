@@ -1,14 +1,21 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:chefo/backend/admin_provider.dart';
+import 'package:chefo/backend/chef_provider.dart';
 import 'package:chefo/models/route.gr.dart';
-import 'package:chefo/screens/splash.dart';
+import 'package:chefo/screens/register_intro.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
+import 'package:provider/provider.dart';
 
+import 'backend/restaurant_provider.dart';
 import 'const.dart';
+import 'screens/splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await translator.init(
     localeDefault: LocalizationDefaultType.device,
     languagesList: <String>['ar', 'en'],
@@ -16,7 +23,16 @@ void main() async {
   );
 
   runApp(
-    LocalizedApp(child: MyApp()),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => RestaurantProvider()),
+        ChangeNotifierProvider(create: (context) => ChefProvider()),
+        ChangeNotifierProvider(create: (context) => AdminProvider()),
+      ],
+      child: LocalizedApp(
+        child: MyApp(),
+      ),
+    ),
   );
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -73,7 +89,6 @@ class MyApp extends StatelessWidget {
         ),
       ),
       title: 'Chefo',
-      home: Splash(),
     );
   }
 }

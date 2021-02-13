@@ -14,12 +14,20 @@ dependencies:
  # flutter_screenutil: ^2.3.1
   auto_route: ^0.6.9
   font_awesome_flutter: ^8.11.0
-  cupertino_icons: ^1.0.1
+  cupertino_icons:
   logger: ^0.9.4
   auto_size_text: ^2.1.0
   carousel_slider: ^2.3.1
   string_validator: ^0.1.4
   localize_and_translate: ^3.0.3
+  provider: ^4.3.3
+  image_picker: ^0.6.7+22
+  get: ^3.24.0
+  firebase_core: "0.7.0"
+  cloud_firestore: ^0.16.0
+  firebase_storage: ^7.0.0
+  firebase_auth: ^0.20.0+1
+
 
 
 dev_dependencies:

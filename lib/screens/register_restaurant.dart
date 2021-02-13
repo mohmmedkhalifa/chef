@@ -1,4 +1,10 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:chefo/backend/restaurant_provider.dart';
+import 'package:chefo/backend/server.dart';
+import 'package:chefo/models/route.gr.dart';
+import 'package:chefo/models/users_model.dart';
 import 'package:chefo/widgets/my_app_bar.dart';
 import 'package:chefo/widgets/my_app_drawer.dart';
 import 'package:chefo/widgets/my_button.dart';
@@ -8,10 +14,16 @@ import 'package:chefo/widgets/my_text_field.dart';
 import 'package:chefo/widgets/my_upload_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
+import 'package:provider/provider.dart';
 import 'package:string_validator/string_validator.dart';
 
 class RegisterRestaurant extends StatefulWidget {
+  userType type;
+
+  RegisterRestaurant({this.type = userType.restaurant});
+
   @override
   _RegisterRestaurantState createState() => _RegisterRestaurantState();
 }
@@ -25,13 +37,33 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
   String password;
   String phone;
   String description;
+  String address;
+  String imageUrl;
+  File logo;
   bool isChecked = false;
 
-  saveForm() {
+  saveForm() async {
     bool validate = formKey.currentState.validate();
     if (isChecked) {
       if (validate) {
         formKey.currentState.save();
+
+        AppUser appUser = AppUser.restaurantUser({
+          'userName': this.name,
+          'email': this.email,
+          'password': this.password,
+          'mobileNumber': this.phone,
+          'companyName': this.restName,
+          'address': this.address,
+          'logo': this.logo,
+          'logoUrl': this.imageUrl,
+          'companyActivity': this.description,
+          'isRestaurant': true
+        });
+       await saveUserInFirebase(appUser, context)
+            .then((value) => ExtendedNavigator.of(context).push(
+                  Routes.inActive,
+                ));
       } else {
         return;
       }
@@ -82,6 +114,19 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
     name = newValue;
   }
 
+  String validateAddress(String value) {
+    if (value == null || value == '') {
+      return translator.translate('required_field');
+    }
+    if (value.length < 3) {
+      return translator.translate('short');
+    }
+  }
+
+  saveAddress(String newValue) {
+    address = newValue;
+  }
+
   String validateRestName(String value) {
     if (value == null || value == '') {
       return translator.translate('required_field');
@@ -92,7 +137,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
   }
 
   saveRestName(String newValue) {
-    name = newValue;
+    restName = newValue;
   }
 
   String validateEmail(String value) {
@@ -136,7 +181,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
   String validateDescription(String value) {
     if (value == null || value == '') {
       return translator.translate('required_field');
-    } else if (value.length < 50) {
+    } else if (value.length < 10) {
       return translator.translate('short');
     }
   }
@@ -149,7 +194,7 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      drawer: AppDrawer(),
+
       appBar: MyAppBar(
         title: 'register_restaurant_title',
       ),
@@ -198,26 +243,24 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                         ),
                       ),
                       MyTextField(
+                        lines: 1,
                         validator: validatePassword,
                         onSaved: savePassword,
                         hintText: translator.translate('password'),
+                        keyboardType: TextInputType.visiblePassword,
+                        isSecure: true,
                         icon: Icon(
                           FontAwesomeIcons.key,
                           size: 16,
                         ),
                       ),
-                      ListTile(
-                        tileColor: Colors.white,
-                        title: Text(
-                          translator.translate('location'),
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: 'DNT',
-                          ),
-                        ),
-                        trailing: Icon(
-                          Icons.location_pin,
-                          color: Theme.of(context).primaryColor,
+                      MyTextField(
+                        validator: validateAddress,
+                        onSaved: saveAddress,
+                        hintText: translator.translate('address'),
+                        icon: Icon(
+                          FontAwesomeIcons.locationArrow,
+                          size: 16,
                         ),
                       ),
                       MyTextField(
@@ -229,8 +272,26 @@ class _RegisterRestaurantState extends State<RegisterRestaurant> {
                           size: 16,
                         ),
                       ),
-                      UploadImage(
-                        text: translator.translate('logo'),
+                      Selector<RestaurantProvider, File>(
+                        builder: (context, value, child) {
+                          return GestureDetector(
+                            onTap: () async {
+                              PickedFile pickedFile = await ImagePicker()
+                                  .getImage(source: ImageSource.gallery);
+                              File file = File(pickedFile.path);
+                              Provider.of<RestaurantProvider>(context,
+                                      listen: false)
+                                  .setFile(file);
+                            },
+                            child: UploadImage(
+                              text: translator.translate('logo'),
+                              imgUrl: imageUrl,
+                            ),
+                          );
+                        },
+                        selector: (x, y) {
+                          return y.file;
+                        },
                       ),
                       MyTextField(
                         validator: validateDescription,

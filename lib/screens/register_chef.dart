@@ -1,13 +1,21 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:chefo/backend/chef_provider.dart';
+import 'package:chefo/backend/server.dart';
+import 'package:chefo/models/route.gr.dart';
+import 'package:chefo/models/users_model.dart';
 import 'package:chefo/widgets/my_app_bar.dart';
-import 'package:chefo/widgets/my_app_drawer.dart';
 import 'package:chefo/widgets/my_button.dart';
 import 'package:chefo/widgets/my_checkbox.dart';
 import 'package:chefo/widgets/my_header_widget.dart';
 import 'package:chefo/widgets/my_text_field.dart';
+import 'package:chefo/widgets/my_upload_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
+import 'package:provider/provider.dart';
 import 'package:string_validator/string_validator.dart';
 
 class RegisterChef extends StatefulWidget {
@@ -21,16 +29,32 @@ class _RegisterChefState extends State<RegisterChef> {
   String name;
   String email;
   String password;
-  String phone;
-  String description;
+  String mobileNumber;
+  String skills;
+  String imageUrl;
+  File logo;
   bool isChecked = false;
 
-
-  saveForm() {
+  saveForm() async {
     bool validate = formKey.currentState.validate();
     if (isChecked) {
       if (validate) {
         formKey.currentState.save();
+        AppUser appUser = AppUser.chefUser({
+          'userName': this.name,
+          'email': this.email,
+          'password': this.password,
+          'logo': this.logo,
+          'mobileNumber': this.mobileNumber,
+          'logoUrl': this.imageUrl,
+          'skills': this.skills,
+          'isChef': true
+        });
+
+        await saveUserInFirebase(appUser, context)
+            .then((value) => ExtendedNavigator.of(context).push(
+                  Routes.inActive,
+                ));
       } else {
         return;
       }
@@ -44,7 +68,7 @@ class _RegisterChefState extends State<RegisterChef> {
             child: Column(
               children: [
                 Text(
-             translator.translate('plz_accpet_terms'),
+                  translator.translate('plz_accpet_terms'),
                   style: Theme.of(context).textTheme.headline2,
                   textAlign: TextAlign.end,
                 ),
@@ -56,7 +80,7 @@ class _RegisterChefState extends State<RegisterChef> {
                     ExtendedNavigator.of(context).pop();
                   },
                   child: Text(
-                   translator.translate('ok'),
+                    translator.translate('ok'),
                     style: Theme.of(context).textTheme.headline1,
                     textAlign: TextAlign.end,
                   ),
@@ -117,7 +141,7 @@ class _RegisterChefState extends State<RegisterChef> {
   }
 
   savePhone(String newValue) {
-    phone = newValue;
+    mobileNumber = newValue;
   }
 
   String validateDescription(String value) {
@@ -129,14 +153,13 @@ class _RegisterChefState extends State<RegisterChef> {
   }
 
   saveDesc(String newValue) {
-    description = newValue;
+    skills = newValue;
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      drawer: AppDrawer(),
       appBar: MyAppBar(
         title: 'register_chef_title',
       ),
@@ -176,9 +199,10 @@ class _RegisterChefState extends State<RegisterChef> {
                     onSaved: saveEmail,
                   ),
                   MyTextField(
-
                     keyboardType: TextInputType.visiblePassword,
-                    hintText:translator.translate('password'),
+                    hintText: translator.translate('password'),
+                    lines: 1,
+                    isSecure: true,
                     icon: Icon(
                       FontAwesomeIcons.key,
                       size: 16,
@@ -196,17 +220,37 @@ class _RegisterChefState extends State<RegisterChef> {
                     validator: validatePhone,
                     onSaved: savePhone,
                   ),
+                  Selector<ChefProvider, File>(
+                    builder: (context, value, child) {
+                      return GestureDetector(
+                        onTap: () async {
+                          PickedFile pickedFile = await ImagePicker()
+                              .getImage(source: ImageSource.gallery);
+                          File file = File(pickedFile.path);
+                          Provider.of<ChefProvider>(context, listen: false)
+                              .setFile(file);
+                        },
+                        child: UploadImage(
+                          text: translator.translate('user_logo'),
+                          imgUrl: imageUrl,
+                        ),
+                      );
+                    },
+                    selector: (x, y) {
+                      return y.file;
+                    },
+                  ),
                   MyTextField(
                     keyboardType: TextInputType.text,
                     lines: 8,
-                    hintText:translator.translate('skills'),
+                    hintText: translator.translate('skills'),
                     validator: validateDescription,
                     onSaved: saveDesc,
                   ),
                   MyCheckBox(
                     isChecked: isChecked,
                     title: translator.translate('accept_terms'),
-                    onChanged: (value){
+                    onChanged: (value) {
                       setState(() {
                         isChecked = value;
                       });

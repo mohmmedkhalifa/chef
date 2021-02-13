@@ -14,7 +14,6 @@ class Register extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-     drawer: AppDrawer(),
       appBar: MyAppBar(
         title:'register',
       ),

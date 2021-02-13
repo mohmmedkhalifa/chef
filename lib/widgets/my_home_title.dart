@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 
 class HomeTitle extends StatelessWidget {
-  HomeTitle({
-    Key key,
-    @required this.size,
-    this.title
-  }) : super(key: key);
+  HomeTitle({Key key, @required this.size, this.title}) : super(key: key);
 
   final Size size;
   String title;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -18,11 +16,10 @@ class HomeTitle extends StatelessWidget {
         ),
         Container(
           width: double.infinity,
-          padding:
-          const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
           color: Colors.white,
           child: Text(
-            title ,
+            translator.translate(title),
             style: Theme.of(context).textTheme.headline3,
           ),
         ),

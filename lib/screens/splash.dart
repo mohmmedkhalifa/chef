@@ -1,50 +1,42 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:chefo/backend/server.dart';
 import 'package:chefo/models/route.gr.dart';
 import 'package:chefo/widgets/my_logo.dart';
 import 'package:flutter/material.dart';
-import 'package:localize_and_translate/localize_and_translate.dart';
 
-class Splash extends StatelessWidget {
+class Splash extends StatefulWidget {
+  @override
+  _SplashState createState() => _SplashState();
+}
+
+class _SplashState extends State<Splash> {
+  String userId = '';
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    userId = getUserId();
+    if (userId != null) {
+      fetchSplashData(context);
+      Future.delayed(Duration(seconds: 3)).then((value) {
+        ExtendedNavigator.of(context).push(Routes.home);
+      });
+    } else {
+      Future.delayed(Duration(seconds: 3)).then((value) {
+        ExtendedNavigator.of(context).push(Routes.registerIntro);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            height: size.height * 0.25,
-          ),
-          Logo(size: size),
-          Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(24),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-
-                GestureDetector(
-                  onTap: () {
-                    ExtendedNavigator.of(context).push(Routes.register);
-                  },
-                  child: Text(
-                      translator.translate('register_button'),
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    ExtendedNavigator.of(context).push(Routes.home);
-                  },
-                  child: Text(
-                    translator.translate('skip'),
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
+      body: Padding(
+        padding: const EdgeInsets.only(top: 270),
+        child: Center(child: Logo(size: size)),
       ),
     );
   }
