@@ -1,6 +1,6 @@
 import 'models/ads.dart';
 import 'models/message.dart';
-import 'models/restaurant.dart';
+import 'models/restaurant_model.dart';
 
 
 List<Ads> ads = [
@@ -131,41 +131,41 @@ List<Ads> ads = [
   ),
 ];
 
-List<Restaurant> restaurants = [
-  Restaurant(
-    imageUrl: 'assets/images/rest7.png',
-    owner: 'فندق جلوريا',
-    id: 6,
+List<RestaurantModel> restaurants = [
+  RestaurantModel(
+    logoUrl: 'assets/images/rest7.png',
+    userName: 'فندق جلوريا',
+
   ),
-  Restaurant(
-    imageUrl: 'assets/images/rest6.png',
-    owner: 'مخبز المدينة',
-    id: 4,
+  RestaurantModel(
+    logoUrl: 'assets/images/rest6.png',
+    userName: 'مخبز المدينة',
+
   ),
-  Restaurant(
-    imageUrl: 'assets/images/rest5.png',
-    owner: 'مطعم العوافي',
-    id: 5,
+  RestaurantModel(
+    logoUrl: 'assets/images/rest5.png',
+    userName: 'مطعم العوافي',
+
   ),
-  Restaurant(
-    imageUrl: 'assets/images/rest4.png',
-    owner: 'مطبخ الأسرة',
-    id: 2,
+  RestaurantModel(
+    logoUrl: 'assets/images/rest4.png',
+    userName: 'مطبخ الأسرة',
+
   ),
-  Restaurant(
-    imageUrl: 'assets/images/rest3.png',
-    owner: 'مطعم حمص عكا',
-    id: 7,
+  RestaurantModel(
+    logoUrl: 'assets/images/rest3.png',
+    userName: 'مطعم حمص عكا',
+
   ),
-  Restaurant(
-    imageUrl: 'assets/images/rest2.png',
-    owner: 'مطعم العوافي',
-    id: 1,
+  RestaurantModel(
+    logoUrl: 'assets/images/rest2.png',
+    userName: 'مطعم العوافي',
+
   ),
-  Restaurant(
-    imageUrl: 'assets/images/rest1.png',
-    owner: 'مطعم جولدن',
-    id: 3,
+  RestaurantModel(
+    logoUrl: 'assets/images/rest1.png',
+    mobileNumber: 'مطعم جولدن',
+
   ),
 ];
 

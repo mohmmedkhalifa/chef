@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:chefo/models/ads.dart';
-import 'package:chefo/models/restaurant.dart';
+import 'package:chefo/models/restaurant_model.dart';
 
 import 'package:chefo/models/route.gr.dart';
 import 'package:chefo/widgets/my_app_bar.dart';
@@ -10,7 +10,7 @@ import 'package:localize_and_translate/localize_and_translate.dart';
 
 class RestaurantDetails extends StatelessWidget {
   List<Ads> ads;
-  Restaurant restaurant;
+  RestaurantModel restaurant;
 
   RestaurantDetails({this.restaurant, this.ads});
 
@@ -33,7 +33,7 @@ class RestaurantDetails extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.contain,
-                    image: AssetImage(restaurant.imageUrl),
+                    image: AssetImage(restaurant.logoUrl),
                   ),
                 ),
               ),
@@ -57,7 +57,7 @@ class RestaurantDetails extends StatelessWidget {
                       padding: const EdgeInsets.all(16.0),
                       child: ListTile(
                         title: Text(
-                          restaurant.owner,
+                          restaurant.userName,
 
                           style: Theme.of(context).textTheme.headline2,
                         ),
@@ -65,7 +65,7 @@ class RestaurantDetails extends StatelessWidget {
                           radius: 30,
                           backgroundColor: Colors.white,
                           backgroundImage: AssetImage(
-                            restaurant.imageUrl,
+                            restaurant.logoUrl,
                           ),
                         ),
                       ),

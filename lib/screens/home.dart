@@ -71,29 +71,29 @@ class Home extends StatelessWidget {
             size: size,
             title:'hotel_and_restaurant',
           ),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Container(
-              height: size.height,
-              width: size.width,
-              child: GridView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.all(8),
-                itemCount: restaurants.length,
-                itemBuilder: (context, index) {
-                  return RestWidget(
-                    restaurant: restaurants[index],
-                  );
-                },
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 1,
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
-                ),
-              ),
-            ),
-          )
+          // Padding(
+          //   padding: const EdgeInsets.all(8),
+          //   child: Container(
+          //     height: size.height,
+          //     width: size.width,
+          //     child: GridView.builder(
+          //       physics: NeverScrollableScrollPhysics(),
+          //       padding: EdgeInsets.all(8),
+          //       itemCount: restaurants.length,
+          //       itemBuilder: (context, index) {
+          //         return RestWidget(
+          //           restaurant: restaurants[index],
+          //         );
+          //       },
+          //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          //         childAspectRatio: 1,
+          //         crossAxisCount: 2,
+          //         crossAxisSpacing: 12,
+          //         mainAxisSpacing: 12,
+          //       ),
+          //     ),
+          //   ),
+          // )
         ],
       ),
     );

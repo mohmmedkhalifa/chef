@@ -6,6 +6,8 @@ import 'package:chefo/backend/chef_provider.dart';
 import 'package:chefo/backend/repository.dart';
 import 'package:chefo/backend/restaurant_provider.dart';
 import 'package:chefo/models/admin_model.dart';
+import 'package:chefo/models/chef_model.dart';
+import 'package:chefo/models/restaurant_model.dart';
 import 'package:chefo/models/route.gr.dart';
 import 'package:chefo/models/users_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -117,4 +119,31 @@ getAdmin(context) async {
     return AdminModel.fromMap(map);
   }).toList();
   Provider.of<AdminProvider>(context, listen: false).setAdmin(admins);
+}
+
+getAllChef(context) async {
+  QuerySnapshot querySnapshot = await firestore
+      .collection('users')
+      .where('isChef', isEqualTo: true)
+      .get();
+  List<ChefModel> chefModel = querySnapshot.docs.map((e) {
+    Map map = e.data();
+    map['marketId'] = e.id;
+    return ChefModel.fromJson(map);
+  }).toList();
+  Provider.of<ChefProvider>(context, listen: false).setChefs(chefModel);
+}
+
+getAllRestaurant(context) async {
+  QuerySnapshot querySnapshot = await firestore
+      .collection('users')
+      .where('isRestaurant', isEqualTo: true)
+      .get();
+  List<RestaurantModel> restaurantModel = querySnapshot.docs.map((e) {
+    Map map = e.data();
+    map['restId'] = e.id;
+    return RestaurantModel.fromJson(map);
+  }).toList();
+  Provider.of<RestaurantProvider>(context, listen: false)
+      .setRests(restaurantModel);
 }

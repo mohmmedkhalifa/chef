@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:chefo/models/ads.dart';
-import 'package:chefo/models/restaurant.dart';
+import 'package:chefo/models/restaurant_model.dart';
 
 import 'package:chefo/models/route.gr.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,7 @@ class RestWidget extends StatelessWidget {
     this.restaurant,
   }) : super(key: key);
 
-  Restaurant restaurant;
+  RestaurantModel restaurant;
   List<Ads> ListOfAds;
 
   @override
@@ -22,7 +22,7 @@ class RestWidget extends StatelessWidget {
       onTap: () {
         ListOfAds =   ads
             .where((e) {
-              return e.ownerId == restaurant.id;
+              return e.ownerId == restaurant.email;
             })
             .map((e) => e)
             .toList();
@@ -52,7 +52,7 @@ class RestWidget extends StatelessWidget {
           children: [
             Expanded(
               child: Image.asset(
-                restaurant.imageUrl,
+                restaurant.logoUrl,
                 fit: BoxFit.cover,
               ),
             ),
@@ -61,7 +61,7 @@ class RestWidget extends StatelessWidget {
             ),
             Expanded(
               child: Text(
-                restaurant.owner,
+                restaurant.userName,
                 style: Theme.of(context).textTheme.headline2,
               ),
             )
