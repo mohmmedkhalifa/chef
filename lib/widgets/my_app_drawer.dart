@@ -63,21 +63,31 @@ class _AppDrawerState extends State<AppDrawer> {
             icon: Icon(Icons.home),
             route: Routes.home,
           ),
-          MyDrawerContent(
-            title: 'messages',
-            icon: Icon(Icons.mail),
-            route: Routes.mailBox,
-          ),
-          MyDrawerContent(
-            title: 'add_ad',
-            icon: Icon(Icons.add),
-            route: Routes.addAds,
-          ),
-          MyDrawerContent(
+          // MyDrawerContent(
+          //   title: 'messages',
+          //   icon: Icon(Icons.mail),
+          //   route: Routes.mailBox,
+          // ),
+          Repository.repository.appUser.type == userType.restaurant
+              ? Column(
+                children: [
+                  MyDrawerContent(
+                      title: 'add_ad',
+                      icon: Icon(Icons.add),
+                      route: Routes.addAds,
+                    ),MyDrawerContent(
+                    title: 'all_ads',
+                    icon: Icon(Icons.clear_all_outlined),
+                    route: Routes.allAds,
+                  )
+                ],
+              )
+              : Container(),
+          Repository.repository.appUser.type == userType.chef?     MyDrawerContent(
             title: 'contact',
             icon: Icon(Icons.phone),
             route: Routes.contact,
-          ),
+          ): Container(),
           MyDrawerContent(
             title: 'terms',
             icon: Icon(Icons.menu_book),

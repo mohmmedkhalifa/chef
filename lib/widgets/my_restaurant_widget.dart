@@ -5,36 +5,21 @@ import 'package:chefo/models/restaurant_model.dart';
 import 'package:chefo/models/route.gr.dart';
 import 'package:flutter/material.dart';
 
-import '../dummy_data.dart';
 
 class RestWidget extends StatelessWidget {
   RestWidget({
     Key key,
     this.restaurant,
+
   }) : super(key: key);
 
-  RestaurantModel restaurant;
-  List<Ads> ListOfAds;
+  Ads restaurant;
+
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        ListOfAds =   ads
-            .where((e) {
-              return e.ownerId == restaurant.email;
-            })
-            .map((e) => e)
-            .toList();
 
-        ExtendedNavigator.of(context).push(
-          Routes.restaurantDetails,
-          arguments: RestaurantDetailsArguments(
-            restaurant: restaurant,
-            ads: ListOfAds,
-          ),
-        );
-      },
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(24),
@@ -51,8 +36,8 @@ class RestWidget extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: Image.asset(
-                restaurant.logoUrl,
+              child: Image.network(
+                restaurant.imageUrl,
                 fit: BoxFit.cover,
               ),
             ),
@@ -61,7 +46,7 @@ class RestWidget extends StatelessWidget {
             ),
             Expanded(
               child: Text(
-                restaurant.userName,
+                restaurant.adOwner,
                 style: Theme.of(context).textTheme.headline2,
               ),
             )

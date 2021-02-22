@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:chefo/backend/repository.dart';
 import 'package:chefo/backend/server.dart';
 import 'package:chefo/models/route.gr.dart';
 import 'package:chefo/widgets/my_logo.dart';
@@ -12,6 +13,7 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   String userId = '';
 
+
   @override
   void initState() {
     // TODO: implement initState
@@ -19,9 +21,8 @@ class _SplashState extends State<Splash> {
     userId = getUserId();
     if (userId != null) {
       fetchSplashData(context);
-      Future.delayed(Duration(seconds: 3)).then((value) {
-        ExtendedNavigator.of(context).push(Routes.home);
-      });
+      getAllAds(userId, context);
+      getAllAdsHome(context);
     } else {
       Future.delayed(Duration(seconds: 3)).then((value) {
         ExtendedNavigator.of(context).push(Routes.registerIntro);

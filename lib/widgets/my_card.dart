@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:chefo/models/ads.dart';
 import 'package:chefo/models/route.gr.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MyCard extends StatelessWidget {
   MyCard({
@@ -19,8 +18,6 @@ class MyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
     return GestureDetector(
       onTap: () {
         ExtendedNavigator.of(context).push(
@@ -28,60 +25,58 @@ class MyCard extends StatelessWidget {
           arguments: AdDetailsArguments(ad: ad),
         );
       },
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(24),
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                spreadRadius: 2,
-                color: Colors.grey,
-                offset: Offset(1.0, 1.0), //(x,y)
-                blurRadius: 4,
-              ),
-            ],
-          ),
+      child: Card(
+        elevation: 6,
+        color: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-                width: size.width * (150 / size.width),
-                height: size.height * (150 / size.height),
-                child: Image.asset(
+              Expanded(
+                child: Image.network(
                   ad.imageUrl,
                   fit: BoxFit.cover,
                 ),
               ),
-              Divider(
-                color: Colors.black,
+              SizedBox(
+                height: 4,
               ),
-              Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    ListTile(
-                      leading: Icon(FontAwesomeIcons.file),
-                      title: Text(
-                        ad.title,
-                        style: Theme.of(context).textTheme.headline1,
-                        maxLines: 3,
-                      ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Icon(
+                    Icons.create,
+                    color: Colors.black,
+                    size: 16,
+                  ),
+                  FittedBox(
+                    child: Text(
+                      ad.title,
+                      style: Theme.of(context).textTheme.headline1,
                     ),
-                    ListTile(
-                      leading: Icon(FontAwesomeIcons.clock),
-                      title: Text(
-                        ad.dateTime,
-                        style: Theme.of(context).textTheme.headline1,
-                        maxLines: 3,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+              Divider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Icon(
+                    Icons.person,
+                    color: Colors.black,
+                    size: 16,
+                  ),
+                  FittedBox(
+                    child: Text(
+                      ad.adOwner,
+                      style: Theme.of(context).textTheme.headline1,
+                    ),
+                  ),
+                ],
+              )
             ],
           ),
-          width: size.width * (330 / size.width),
         ),
       ),
     );

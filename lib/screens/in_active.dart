@@ -1,18 +1,17 @@
+import 'package:chefo/widgets/error_login.dart';
 import 'package:flutter/material.dart';
-import 'package:localize_and_translate/localize_and_translate.dart';
 
 class InActive extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-            translator.translate('inactive'),
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 48),
-          ),
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ErrorLogin(size: size,),
+        ],
       ),
     );
   }

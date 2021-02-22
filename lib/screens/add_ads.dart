@@ -1,10 +1,12 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:chefo/backend/repository.dart';
+import 'package:chefo/backend/server.dart';
+import 'package:chefo/models/route.gr.dart';
 import 'package:chefo/widgets/my_app_bar.dart';
 import 'package:chefo/widgets/my_app_drawer.dart';
-
 import 'package:chefo/widgets/my_button.dart';
 import 'package:chefo/widgets/my_checkbox.dart';
 import 'package:chefo/widgets/my_text_field.dart';
-import 'package:chefo/widgets/my_upload_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
@@ -23,12 +25,21 @@ class _AddAdsState extends State<AddAds> {
   String description;
   bool isChecked1 = false;
   bool isChecked2 = false;
-  bool isChecked3 = false;
 
-  saveForm() {
+  saveForm() async {
     bool validate = formKey.currentState.validate();
     if (validate) {
       formKey.currentState.save();
+      Map map = {
+        "title": title,
+        "description": description,
+        "allowMail": isChecked1,
+        "allowShare": isChecked2,
+        "imageUrl":Repository.repository.appUser.logoUrl,
+        "adOwner": Repository.repository.appUser.companyName,
+        "email": Repository.repository.appUser.email,
+      };
+     await addNewAd(map, context).then((e)=> ExtendedNavigator.of(context).push(Routes.allAds));
     } else {
       return;
     }
@@ -50,7 +61,7 @@ class _AddAdsState extends State<AddAds> {
   String validateDescription(String value) {
     if (value == null || value == '') {
       return translator.translate('required_field');
-    } else if (value.length < 50) {
+    } else if (value.length < 20) {
       return translator.translate('short');
     }
   }
@@ -79,16 +90,13 @@ class _AddAdsState extends State<AddAds> {
                 children: [
                   MyTextField(
                     keyboardType: TextInputType.name,
-                    hintText:translator.translate('ad_title'),
+                    hintText: translator.translate('ad_title'),
                     icon: Icon(
                       FontAwesomeIcons.user,
                       size: 16,
                     ),
                     validator: validateTitle,
                     onSaved: saveTitle,
-                  ),
-                  UploadImage(
-                    text: translator.translate('logo'),
                   ),
                   MyTextField(
                     keyboardType: TextInputType.text,
@@ -99,7 +107,7 @@ class _AddAdsState extends State<AddAds> {
                   ),
                   MyCheckBox(
                     isChecked: isChecked1,
-                    title:  translator.translate('receive_msg'),
+                    title: translator.translate('receive_msg'),
                     onChanged: (value) {
                       setState(() {
                         isChecked1 = value;
@@ -108,19 +116,10 @@ class _AddAdsState extends State<AddAds> {
                   ),
                   MyCheckBox(
                     isChecked: isChecked2,
-                    title:  translator.translate('allow_repost'),
+                    title: translator.translate('allow_repost'),
                     onChanged: (value) {
                       setState(() {
                         isChecked2 = value;
-                      });
-                    },
-                  ),
-                  MyCheckBox(
-                    isChecked: isChecked3,
-                    title:  translator.translate('dont_disturb'),
-                    onChanged: (value) {
-                      setState(() {
-                        isChecked3 = value;
                       });
                     },
                   ),

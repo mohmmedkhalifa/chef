@@ -26,7 +26,7 @@ class ChefModel {
     mobileNumber = json['mobileNumber'];
     skills = json['skills'];
     userName = json['userName'];
-    chefId =  json['chefId'];
+    chefId = json['chefId'];
   }
 
   Map<String, dynamic> toJson() {

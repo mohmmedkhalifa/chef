@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route_annotations.dart';
 import 'package:chefo/screens/about.dart';
 import 'package:chefo/screens/ad_details.dart';
 import 'package:chefo/screens/add_ads.dart';
+import 'package:chefo/screens/all_ads.dart';
+import 'package:chefo/screens/chef_members.dart';
 import 'package:chefo/screens/contact.dart';
 import 'package:chefo/screens/control_panel.dart';
 import 'package:chefo/screens/conversation.dart';
@@ -14,6 +16,7 @@ import 'package:chefo/screens/register_chef.dart';
 import 'package:chefo/screens/register_restaurant.dart';
 import 'package:chefo/screens/restaurant_deatails.dart';
 import 'package:chefo/screens/register_intro.dart';
+import 'package:chefo/screens/restaurant_members.dart';
 import 'package:chefo/screens/splash.dart';
 import 'package:chefo/screens/terms.dart';
 
@@ -36,6 +39,9 @@ import 'package:chefo/screens/terms.dart';
     MaterialRoute(page: Login,),
     MaterialRoute(page: InActive,),
     MaterialRoute(page: ControlPanel,),
+    MaterialRoute(page: ChefMembers,),
+    MaterialRoute(page: RestaurantMembers,),
+    MaterialRoute(page: AllAds,),
     MaterialRoute(page: Splash,initial: true),
 
 

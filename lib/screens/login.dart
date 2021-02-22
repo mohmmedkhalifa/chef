@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:chefo/backend/server.dart';
 import 'package:chefo/models/route.gr.dart';
+import 'package:chefo/models/users_model.dart';
 import 'package:chefo/widgets/my_app_bar.dart';
 import 'package:chefo/widgets/my_button.dart';
 import 'package:chefo/widgets/my_text_field.dart';
@@ -20,12 +21,23 @@ class _LoginState extends State<Login> {
   String email;
   String password;
 
+  AppUser appUser;
+
   saveForm() async {
     bool validate = formKey.currentState.validate();
     if (validate) {
       formKey.currentState.save();
-      await signInUsingEmailAndPassword(email, password).then(
-          (value) => ExtendedNavigator.of(context).push(Routes.controlPanel));
+      appUser = await signInUsingEmailAndPassword(email, password);
+      print(appUser.isActive);
+      if (appUser.isAdmin ?? false) {
+        ExtendedNavigator.of(context).push(Routes.controlPanel);
+      }
+
+      if (appUser.isActive) {
+        ExtendedNavigator.of(context).push(Routes.home);
+      } else {
+        ExtendedNavigator.of(context).push(Routes.inActive);
+      }
     } else {
       return;
     }
@@ -129,8 +141,9 @@ class _LoginState extends State<Login> {
                             textAlign: TextAlign.center,
                           ),
                           GestureDetector(
-                            onTap: (){
-                              ExtendedNavigator.of(context).push(Routes.register);
+                            onTap: () {
+                              ExtendedNavigator.of(context)
+                                  .push(Routes.register);
                             },
                             child: Text(
                               translator.translate('register'),

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:chefo/backend/admin_provider.dart';
+import 'package:chefo/backend/ads_provider.dart';
 import 'package:chefo/backend/chef_provider.dart';
 import 'package:chefo/models/route.gr.dart';
 import 'package:chefo/screens/register_intro.dart';
@@ -28,6 +29,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => RestaurantProvider()),
         ChangeNotifierProvider(create: (context) => ChefProvider()),
         ChangeNotifierProvider(create: (context) => AdminProvider()),
+        ChangeNotifierProvider(create: (context) => AdsProvider()),
       ],
       child: LocalizedApp(
         child: MyApp(),
@@ -67,22 +69,22 @@ class MyApp extends StatelessWidget {
             fontSize: 50,
           ),
           headline4: TextStyle(
-            fontFamily: 'DNT',
+            fontFamily: 'Montserrat',
             color: Colors.white,
             fontSize: 28,
           ),
           headline3: TextStyle(
-            fontFamily: 'DNT',
+            fontFamily: 'Montserrat',
             color: Colors.black,
             fontSize: 28,
           ),
           headline2: TextStyle(
-            fontFamily: 'DNT',
+            fontFamily: 'Montserrat',
             color: Colors.black,
             fontSize: 22,
           ),
           headline1: TextStyle(
-            fontFamily: 'DNT',
+            fontFamily: 'Montserrat',
             color: Colors.black,
             fontSize: 18,
           ),
